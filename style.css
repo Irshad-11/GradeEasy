@@ -1,0 +1,3776 @@
+/* General Styles */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* border: 1px solid white; */
+    font-family: "Fira Sans", sans-serif;
+    -webkit-user-select: none;
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+
+    /* For Internet Explorer and Edge */
+    &::-webkit-scrollbar {
+        display: none;
+        /* For Chrome, Safari, and Opera */
+    }
+
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide spinners for Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    /* Firefox */
+}
+
+body {
+    background-color: #2d1e16;
+    /* Dark Chocolate Background */
+    color: #f5e1c5;
+    /* Light Text for contrast */
+    display: flex;
+    height: 100vh;
+    /* overflow: hidden; */
+}
+
+.toast-container {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 300px;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: rgba(255, 255, 255, 0.144);
+    /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    /* Blur effect for glassmorphism */
+    -webkit-backdrop-filter: blur(10px);
+    /* Safari support */
+    font-size: 1rem;
+    align-items: center;
+    color: #f0d7c8;
+    font-weight: normal;
+    padding: 15px;
+    width: 300px;
+    margin-top: 10px;
+    border-radius: 10px;
+    /* Rounded corners for a smooth look */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Subtle white border */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Slight shadow for depth */
+    position: relative;
+    overflow: hidden;
+    animation: slideIn 0.6s ease-out;
+}
+
+.toast .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    animation: shrink 5s linear forwards;
+}
+
+.toast.success .progress-bar {
+    background-color: #28a745;
+}
+
+.toast.warning .progress-bar {
+    background-color: #ffc107;
+}
+
+.toast.error .progress-bar {
+    background-color: #dc3545;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shrink {
+    from {
+        width: 100%;
+    }
+
+    to {
+        width: 0%;
+    }
+}
+
+
+.asidePhone {
+    display: none;
+}
+
+
+.aside {
+    width: 12vw;
+    background-color: #3b2619;
+    padding: 20px;
+    border-right: 2px solid rgba(229, 201, 201, 0.418);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px 0 0 20px;
+    overflow-y: scroll;
+
+    scrollbar-width: thin;
+    /* For Firefox: makes scrollbar thin */
+    scrollbar-color: transparent transparent;
+    /* For Firefox: sets scrollbar color to transparent */
+
+}
+
+.aside .logo {}
+
+
+
+.aside .logo p {
+    font-size: clamp(2.5rem, 2.9rem, 2.7rem);
+    color: #f5e1c5;
+    margin-bottom: 20px;
+    text-align: right;
+}
+
+.aside .footer img {
+    width: 80px;
+    clip-path: circle(40px);
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.aside .footer img:hover {
+    transform: scale(1.1);
+    transition: 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.aside .footer img:active {
+    transform: scale(0.9);
+    transition: 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* Container */
+.container {
+    display: flex;
+    /* flex-direction: column; */
+    min-height: 100vh;
+}
+
+/* Tab Navigation (Right Side) */
+.tab-navigation {
+    width: 12vw;
+    height: 100%;
+    background-color: #3b2619;
+    padding: 20px;
+    border-right: 2px solid rgba(229, 201, 201, 0.418);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px 0 0 20px;
+}
+
+.tab {
+    min-width: 100%;
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 15px;
+    margin: 10px 0;
+    background-color: #5a3c2c;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.tab:hover,
+.tab.active {
+    background-color: #8b5a3c;
+    color: #fff;
+}
+
+/* Main Content */
+.content {
+    height: auto;
+    /* margin-bottom: 100px; */
+    /* min-height: 110vh; */
+    /* Ensures it takes at least full viewport height */
+    overflow-y: auto;
+}
+
+/* Tab Content */
+.tab-content {
+    padding: 20px;
+    display: none;
+    height: 100vh;
+    width: 88vw;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    min-height: calc(100vh - 60px);
+    display: block;
+}
+
+/* Buttons */
+
+/* Tables */
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    background-color: #3b2619;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #8b5a3c;
+    text-align: center;
+}
+
+th {
+    background-color: #5a3c2c;
+}
+
+
+
+/* Styling for the Introduction Quote */
+.intro-quote {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #f5ece7;
+    /* Coffee brown text color */
+    background: #D6C0B3;
+    /* Semi-transparent white for glassmorphism */
+    backdrop-filter: blur(10px);
+    /* Glassmorphism effect */
+    -webkit-backdrop-filter: blur(10px);
+    /* Safari support */
+    border-left: 5px solid #8b5a3c;
+    /* Coffee-colored left border */
+    padding: 20px 30px;
+    margin: 20px 0;
+    border-radius: 10px;
+    /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    background-color: rgba(245, 225, 197, 0.2);
+    /* Light coffee cream background */
+}
+
+.intro-quote strong {
+    color: #ffcea2;
+    /* Highlighted coffee color for strong text */
+    font-weight: bold;
+}
+
+.intro-quote::before {
+    content: "❝";
+    font-size: 2rem;
+    color: #e49564;
+    position: absolute;
+    margin-left: -24px;
+    margin-top: -12px;
+}
+
+
+
+
+
+
+
+/* Circular CGPA Indicator */
+
+
+/* CGPA Graph */
+
+/* Settings */
+
+
+#introduction {
+    padding: 10px;
+    padding-top: 30px;
+
+}
+
+#introduction h1 {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+* {
+    /* border: 1px solid rgba(117, 114, 114, 0.205); */
+}
+
+
+#introduction .buttons {
+    padding-right: 50px;
+    text-align: right;
+    font-size: 1.4rem;
+}
+
+#introduction .buttons button {
+    font-size: 1.17rem;
+    background-color: #8b5a3c;
+    color: white;
+    padding: 7px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-top: 10px;
+}
+
+#introduction .buttons button:hover {
+    background-color: #a16e4d;
+    transform: scale(1.04);
+}
+
+
+/* next tab */
+
+
+#cg-calculate {
+    padding: 50px 40px 0px 40px;
+}
+
+#cg-calculate h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#cg-calculate .selection {
+    margin-bottom: 20px;
+    display: flex;
+    align-content: stretch;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#cg-calculate .selection label {
+    font-size: 1.3rem;
+    margin-left: 10px;
+    ;
+    margin-right: 10px;
+    color: #f5e1c5;
+}
+
+#cg-calculate .selection #calcType {
+    /* width: 100%; */
+    padding: 5px 10px;
+    font-size: 1.1rem;
+    color: #f5e1c5;
+    background-color: #5a3c2c;
+    border: 1px solid #8b5a3c;
+    border-radius: 5px;
+    appearance: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#cg-calculate #calcType:hover {
+    background-color: #8b5a3c;
+    border-color: #a16e4d;
+}
+
+#cg-calculate #calcType:focus {
+    outline: none;
+    box-shadow: 0 0 5px #a16e4d;
+}
+
+#cg-calculate #semesterName {
+
+    font-size: 1.2rem;
+    width: 25%;
+    margin: 10px;
+    color: #f5e1c5;
+    border: 1px solid #8b5a3c;
+    border-radius: 10px;
+}
+
+#cg-calculate .selection input {
+    /* Ensures placeholder text remains visible */
+    position: relative;
+    box-sizing: border-box;
+    margin-right: 20px;
+}
+
+#cg-calculate .selection input::placeholder {
+    font-size: 0.8rem;
+    color: rgb(185, 185, 185);
+    /* Optional: Change the color */
+    transition: transform 0.3s ease-in-out;
+    /* Smooth transition for the movement */
+
+}
+
+
+#cg-calculate #semesterName:focus {
+
+    outline: none;
+    box-shadow: 0 0 5px #a16e4d;
+}
+
+
+#cg-calculate .selection #TrackthisCGPA[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #8b5a3c;
+    border-radius: 4px;
+    background-color: #3b2619;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+#cg-calculate .selection #TrackthisCGPA[type="checkbox"]:checked {
+    background-color: #8b5a3c;
+    border-color: #a16e4d;
+}
+
+#cg-calculate .selection #TrackthisCGPA[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 10px;
+    width: 9px;
+    height: 18px;
+    border: solid #f5e1c5;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    transition: all 0.8s ease;
+}
+
+#cg-calculate .selection .TrackthisCGPALabel {
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    color: #f5e1c5;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+#cg-calculate .selection .TrackthisCGPALabel:hover {
+    color: #73c45e;
+}
+
+
+#cg-calculate table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+#cg-calculate th,
+td {
+    border: 1px solid #b16a6a;
+    padding: 0px;
+    text-align: center;
+}
+
+#cg-calculate th {
+    background-color: #7b3131;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#cg-calculate input {
+    width: 100%;
+    padding: 15px;
+    background-color: transparent;
+    color: white;
+    font-size: 0.8rem;
+    border: none;
+}
+
+
+#cg-calculate button {
+    padding: 8px 16px;
+    margin: 5px;
+    cursor: pointer;
+
+}
+
+#cg-calculate .hidden {
+    display: none;
+}
+
+#cg-calculate .selection {
+    margin-bottom: 20px;
+}
+
+#cg-calculate #inputSection {
+    margin-bottom: 40px;
+}
+
+
+
+#cg-calculate #addRow {
+    background-color: #754a2f;
+    color: white;
+    font-size: 0.8rem;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#cg-calculate #addRow:hover {
+    background-color: #a16e4d;
+    transform: scale(1.04);
+}
+
+#cg-calculate #addRow:active {
+    background-color: #754a2f;
+    transform: scale(0.95);
+}
+
+#cg-calculate .delete {
+    background-color: #8b5a3c;
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#cg-calculate .delete:hover {
+    background-color: #a14d4d;
+    transform: scale(1.04);
+}
+
+#cg-calculate .delete:active {
+    background-color: #754a2f;
+    transform: scale(0.95);
+}
+
+#cg-calculate #calculate {
+    background-color: #51752f;
+    color: white;
+    font-size: 0.8rem;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#cg-calculate #calculate:hover {
+    background-color: #5ea14d;
+    transform: scale(1.04);
+}
+
+#cg-calculate #calculate:active {
+    background-color: #51752f;
+    transform: scale(0.95);
+}
+
+#cg-calculate #resultSection #cgpaResult {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+#resultTable th {
+    background-color: #7b3131;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#resultTable td {
+    font-size: 0.8rem;
+    padding: 15px;
+}
+
+
+
+
+
+#track-cgpa {
+    padding: 50px 40px 0px 40px;
+}
+
+#track-cgpa h1 {
+    align-items: center;
+    position: relative;
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.svg {
+    padding: 3px;
+    background-color: gray;
+    clip-path: circle(20px);
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    transition: all 0.7 ease;
+}
+
+.svg:hover {
+    scale: 1.04;
+    transition: all 0.7 ease;
+}
+
+.svg:active {
+    box-shadow: 2px 2px rgba(56, 56, 56, 0.678);
+    scale: 0.95;
+    transition: all 0.7 ease;
+}
+
+#cgpa-graph {
+    margin: 20px 0;
+    animation: slideDown 0.5s ease-in-out;
+
+}
+
+#cgpa-graph svg {
+    background: #5a3c2c;
+    border: 1px solid #f5e1c5;
+    border-radius: 5px;
+}
+
+.point {
+    fill: steelblue;
+    stroke: #fff;
+    stroke-width: 1;
+}
+
+
+#track-cgpa #specific-results h2 {
+    animation: slideDown 0.5s ease-in-out;
+
+    margin: 20px 0px;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#track-cgpa #specific-results p {
+    animation: slideDown 0.5s ease-in-out;
+
+    text-align: center;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+#track-cgpa #specific-results .navigate-to-cg {
+
+    background-color: #8b5a3c;
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#track-cgpa #specific-results .navigate-to-cg:hover {
+    background-color: #745038;
+    transform: scale(1.02);
+}
+
+#track-cgpa #specific-results .navigate-to-cg:active {
+    background-color: #754a2f;
+    transform: scale(0.95);
+}
+
+#track-cgpa #specific-results .edit-semester {
+    background-color: #215794;
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#track-cgpa #specific-results .edit-semester:hover {
+    background-color: #1a4d8f;
+    transform: scale(1.02);
+}
+
+#track-cgpa #specific-results .edit-semester:active {
+    background-color: #215794;
+    transform: scale(0.95);
+}
+
+#track-cgpa #specific-results {
+    height: auto;
+    padding-bottom: 70px;
+}
+
+
+
+.semester-link {
+    animation: slideDown 0.5s ease-in-out;
+
+    display: block;
+    padding: 8px;
+    margin: 4px 0;
+    text-decoration: none;
+    color: #0066cc;
+    cursor: pointer;
+}
+
+.semester-link:hover {
+    text-decoration: underline;
+}
+
+.semester-entry {
+    margin: 10px 0;
+    border: 1px solid #dddddd4b;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.semester-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.semester-link {
+    text-decoration: none;
+    border-radius: 5px;
+    color: #dfdfdf;
+    cursor: pointer;
+    transition: background-color 0.8s ease, color 1.3s ease;
+    background-color: #774e34;
+}
+
+.semester-link:hover {
+    text-decoration: none;
+    background-color: #74330a;
+    color: #fff;
+    transition: background-color 0.8s ease, color 1.3s ease;
+}
+
+.semester-link.active {
+    background-color: #8b5a3c;
+    transform: scale(0.95);
+    color: #fff;
+}
+
+.delete-semester {
+    background-color: #ff4444;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.delete-semester:hover {
+    background-color: #cc0000;
+    transform: scale(1.02);
+}
+
+.delete-semester:active {
+    background-color: #ff4444;
+    transform: scale(0.95);
+}
+
+.details-table {
+    animation: slideDown 0.5s ease-in-out;
+
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.details-table th,
+.details-table td {
+    border: 1px solid #6e6e6eb0;
+    padding: 8px;
+    text-align: left;
+}
+
+.details-table th {
+    background-color: #5a3c2c;
+}
+
+
+/* Department of Software Engineering */
+
+
+
+
+.introduceSE {
+    animation: slideDown 0.5s ease-in-out;
+
+    border-radius: 10px;
+    margin: 20px 0;
+    /* font-size: 1.1rem; */
+    padding: 30px 20px;
+    color: #f5e1c5;
+    text-align: justify;
+    background-color: #d390662f;
+}
+
+#toggle-button {
+    display: none;
+}
+
+#department-name {
+
+    color: transparent;
+    /* Make text transparent */
+    position: relative;
+    /* Position relative for the outline effect */
+    animation: gradient-animation 5s ease infinite;
+}
+
+
+
+#department-name::after {
+    content: attr(data-text);
+    /* Use the same text for the outline */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(270deg, #ffe2d1, #c26851, #feb47b, #ffe2d1);
+    background-size: 1000%;
+    /* Increase size for animation */
+    -webkit-background-clip: text;
+    /* Clip background to text */
+    -webkit-text-fill-color: transparent;
+    /* Make text transparent */
+    animation: gradient-animation 15s ease infinite;
+    /* Animation */
+    z-index: -1;
+    /* Place behind the original text */
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+        /* Start position */
+    }
+
+    50% {
+        background-position: 100% 50%;
+        /* Middle position */
+    }
+
+    100% {
+        background-position: 0% 50%;
+        /* End position */
+    }
+}
+
+#swe-outline h1 {
+    margin: 20px 0px;
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#swe-outline .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#swe-outline .header h1 {
+    font-size: 2rem;
+    color: #976460;
+    /* Dark coffee color for text */
+}
+
+
+
+
+#swe-outline .buttons button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    background-color: #8b5a2b;
+    /* Medium coffee brown */
+    color: #fffaf0;
+    /* Light cream for text */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: scale 0.3s ease, background-color 0.3s ease;
+}
+
+#swe-outline .buttons button:hover {
+    background-color: #6f4a24;
+    transition: scale 0.3s ease, background-color 0.3s ease;
+    /* Darker coffee brown on hover */
+}
+
+#swe-outline .buttons button:active {
+    background-color: #8b5a2b;
+    /* Medium coffee brown */
+    transform: scale(0.90);
+    transition: scale 0.3s ease, background-color 0.3s ease;
+}
+
+
+#swe-outline .level,
+.term,
+.subject,
+.exam,
+.syllabus {
+    margin: 5px 0;
+    position: relative;
+    animation: slideDown 0.5s ease-in-out;
+
+}
+
+
+
+#swe-outline .title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #4b2d14;
+    /* Light coffee brown for titles */
+
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.5s;
+}
+
+#swe-outline .title:hover {
+    background-color: #684428;
+    /* Slightly darker coffee brown on hover */
+}
+
+#swe-outline .title-text {
+    flex-grow: 1;
+}
+
+.toggle-button-forShowandLess {
+    display: none;
+}
+
+#swe-outline .toggle-btn {
+    padding: 5px 10px;
+    background-color: #8b5a2b;
+    /* Medium coffee brown for toggle buttons */
+    color: #fffaf0;
+    /* Light cream for text */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: scale 0.3s ease;
+}
+
+#swe-outline .toggle-btn:hover {
+    background-color: #38281c;
+    scale: 1.05;
+    transition: scale 0.3s ease;
+    /* Darker coffee brown on hover */
+}
+
+#swe-outline .toggle-btn:active {
+    scale: 0.85;
+}
+
+#swe-outline .term {
+    margin-left: 20px;
+}
+
+#swe-outline .subject {
+    margin-left: 25px;
+}
+
+#swe-outline .exam {
+    margin-left: 30px;
+}
+
+#swe-outline .content {
+    display: none;
+    position: relative;
+}
+
+#swe-outline .content.open {
+    left: 0;
+    display: block;
+    animation: slideDown 0.5s ease-in-out;
+}
+
+#course-outline {
+    margin: 30px 0;
+}
+
+.lastUpdateSyllebus {
+    margin: 20px;
+    margin-bottom: 100px;
+    text-align: center;
+    padding: 20px;
+}
+
+#swe-outline .syllabus {
+    margin-top: 10px;
+    margin-left: 25px;
+    padding: 10px;
+    background-color: #4c3325;
+    /* Light cream for syllabus background */
+    border: 1px solid #d3b7a044;
+    /* Light coffee brown border */
+    border-radius: 4px;
+    color: #fff3f2;
+    /* Dark coffee color for text */
+}
+
+
+/* Vertical line animation */
+#swe-outline .content::before {
+    content: '';
+    position: absolute;
+    left: -17px;
+    top: 0;
+    width: 20px;
+    height: 0;
+    background-color: #e79e5969;
+    /* Medium coffee brown for vertical line */
+    transition: height 0.3s ease-in-out;
+    animation: slideDown 0.5s ease-in-out;
+
+}
+
+#swe-outline .content.open::before {
+    height: 100%;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+/* Setting */
+
+
+#settings label {
+    display: block;
+    margin: 10px 0;
+}
+
+#settings h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.PresetPortion {
+    max-height: 350px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    gap: 50px;
+    overflow-x: scroll;
+    padding: 10px;
+    background-color: #5a3c2c;
+    border-radius: 5px;
+    color: #f5e1c5;
+    animation: slideDown 0.5s ease-in-out;
+    flex-wrap: nowrap;
+    flex-direction: column;
+
+
+}
+
+#settings .PresetPortion #preset-options {
+    background-color: #9c4614;
+    color: rgb(238, 231, 231);
+    border-radius: 10px;
+    width: fit-content;
+    padding: 0px 10px;
+}
+
+/* Preset Button Styles */
+#PresetButton {
+    background-color: #8b5a3c;
+    /* Default background color */
+    color: white;
+    /* Default text color */
+    font-size: 1rem;
+    /* Default font size */
+    padding: 10px 20px;
+    /* Padding for the button */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Smooth transitions */
+}
+
+/* Hover State */
+#PresetButton:hover {
+    background-color: #a16e4d;
+    /* Slightly lighter background on hover */
+    transform: scale(1.05);
+    /* Slightly enlarge the button */
+}
+
+/* Active State */
+#PresetButton:active {
+    background-color: #754a2f;
+    /* Darker background on active */
+    transform: scale(0.95);
+    /* Slightly shrink the button */
+}
+
+/* Disabled State */
+#PresetButton:disabled {
+    background-color: #d3b7a0;
+    /* Light gray background for disabled */
+    color: #ffffff80;
+    /* Faded text color */
+    cursor: not-allowed;
+    /* Not-allowed cursor */
+    opacity: 0.6;
+    /* Reduce opacity */
+}
+
+
+
+
+/* Add to existing stylesheet */
+#presetModal {
+    z-index: 1000;
+}
+
+#presetGradingTable th,
+#presetGradingTable td {
+    border: 1px solid #4b5563;
+    text-align: center;
+}
+
+.grading-start,
+.grading-end,
+.grading-gpa {
+    max-width: 100px;
+}
+
+.hidden {
+    display: none;
+}
+
+
+.preset-item {
+    width: 100%;
+    flex-grow: 1;
+    transition: background-color 0.3s;
+}
+
+.preset-item:hover {
+    background-color: #4b5563;
+}
+
+#presetSelector {
+    padding: 5px 10px;
+    font-size: 1rem;
+    color: #f5e1c5;
+    background-color: #5a3c2c;
+    border: 1px solid #8b5a3c;
+    border-radius: 5px;
+    appearance: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+#presetSelector:active {
+    background-color: #8b5a3c;
+    border-color: #a16e4d;
+}
+
+#presetList {
+    display: flex;
+    height: auto;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+}
+
+#presetList .preset-item {
+    display: flex;
+    gap: 10px;
+    height: 95px;
+    min-width: 230px;
+    width: 139px;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 1px solid #8b5a3c;
+    padding: 3px 8px;
+    background-color: #374151;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #5a3c2c;
+    color: #f5e1c5;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#presetList .preset-item:hover {
+    background-color: #8b5a3c;
+    transform: scale(1.02);
+}
+
+#presetList .preset-item:active {
+    background-color: #5a3c2c;
+    transform: scale(0.95);
+}
+
+#presetList .preset-item .edit-preset {
+    font-size: 0.7rem;
+    background-color: #107227;
+    /* Bootstrap Success Green */
+    color: #ffffff;
+    /* text-white */
+    ;
+    /* mr-2 */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+
+}
+
+#presetList .preset-item .delete-preset {
+    font-size: 0.7rem;
+    background-color: #721010;
+    /* Vibrant red */
+    color: #ffffff;
+    /* Tailwind's text-white */
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+
+}
+
+#presetList .preset-item button {
+    padding: 3px 6px;
+    /* py-1 px-2 */
+    border-radius: 4px;
+    /* rounded */
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#presetList .preset-item button:hover {
+    transform: scale(1.05);
+}
+
+#presetModal {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+#presetModal .heading input {
+    width: auto;
+    border-radius: 10px;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(209, 209, 209);
+    padding: 10px 20px;
+    border: 1px solid #8b5a3c;
+    outline: #361b06;
+}
+
+#presetModal .heading input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #a16e4d;
+}
+
+#presetModal .heading .NamingButton {
+    margin-top: 40px;
+}
+
+#presetModal .presetContainer {
+    display: flex;
+    gap: 150px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#presetModal .mainInput {
+    display: flex;
+    flex-direction: column;
+}
+
+#presetModal .mainInput input {
+    width: auto;
+    border-radius: 10px;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(209, 209, 209);
+    padding: 10px 20px;
+    border: 1px solid #8b5a3c;
+    outline: #361b06;
+}
+
+#presetModal .mainInput input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #a16e4d;
+}
+
+.MPCdiv {
+    margin-top: 40px;
+}
+
+
+#presetModal .gradingInput {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+
+}
+
+#presetModal .gradingInput input {
+    width: auto;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(209, 209, 209);
+    padding: 2px 10px;
+    border: none;
+    outline: #361b06;
+}
+
+#presetModal .gradingInput input:focus {
+    outline: none;
+    box-shadow: 0 0 5px #a16e4d;
+}
+
+#presetModal .gradingInput .grading-grade {
+    width: 50px;
+}
+
+#presetModal .gradingInput .remove-row {
+    font-size: 0.8rem;
+    padding: 2px 6px;
+    background-color: #b32b2b;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
+
+#presetModal .gradingInput .remove-row:hover {
+    background-color: #9f1c1c;
+    transform: scale(1.02);
+}
+
+
+#addGradeRange {
+    background-color: #3b7429;
+    color: white;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#addGradeRange:hover {
+    background-color: #2e681c;
+    transform: scale(1.02);
+}
+
+
+.settingsApplyDiscardButton button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.settingsApplyDiscardButton #applyPreset {
+    background-color: #3b7429;
+
+}
+
+.settingsApplyDiscardButton #discardPreset {
+    background-color: #b32b2b;
+}
+
+.settingsApplyDiscardButton button:hover {
+    transform: scale(1.02);
+}
+
+.settingsApplyDiscardButton button:active {
+    transform: scale(0.95);
+}
+
+
+
+
+
+
+.GradeTable {
+    display: flex;
+    justify-content: flex-end
+}
+
+#ApplyButton {
+    background-color: #09ad2f;
+    padding: 4px 10px;
+}
+
+#DiscardButton {
+    background-color: rgb(196, 0, 0);
+    padding: 4px 10px;
+}
+
+#marks-settings {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#cgpa-calculator-settings {
+    /* width: 100%; */
+    justify-content: space-around;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+
+
+    padding: 20px;
+    background: #3b2619;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#cgpa-calculator-settings input,
+#cgpa-calculator-settings select {
+    padding: 7px 0px;
+    background-color: #8b5a3c;
+
+    text-align: center;
+    color: rgb(182, 177, 177);
+    background: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#cgpa-calculator-settings input {
+    background-color: transparent;
+    color: white;
+    border: 1px solid rgb(187, 187, 187);
+    border-radius: 5px;
+}
+
+#cgpa-calculator-settings .GradeTable input {
+    background-color: transparent;
+    border: transparent;
+    color: #cccccc;
+
+}
+
+
+#cgpa-calculator-settings select {
+    background-color: #8b5a3c;
+    color: #e9cec0;
+}
+
+#grading-table-section {
+    width: 50%;
+    height: 40%;
+    font-size: 0.8rem;
+}
+
+#cgpa-calculator-settings table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#cgpa-calculator-settings table th,
+#cgpa-calculator-settings table td {
+    font-size: 0.8rem;
+
+    text-align: center;
+}
+
+#cgpa-calculator-settings #grading-table button {
+    /* margin-top: 5px; */
+    font-size: 0.7rem;
+    background-color: #4b2d14;
+    color: #e4802f;
+    padding: 4px 6px;
+    cursor: pointer;
+}
+
+#grading-table-section {
+    display: none;
+}
+
+footer {
+    position: relative;
+    margin-top: 20px;
+    text-align: center;
+    margin-bottom: 400px;
+}
+
+.flex-row {
+    display: flex;
+    gap: 10px;
+}
+
+.flex-row>div {
+    flex: 1;
+}
+
+#version {
+    text-align: center;
+    margin: 40px;
+    padding-bottom: 40px;
+
+}
+
+
+
+
+/* about GradeEasy  */
+
+/* About GradeEasy Section */
+#about {
+    padding-bottom: 50px;
+    padding: 50px 40px;
+    color: #f5e1c5;
+    overflow-x: scroll;
+}
+
+#about h1 {
+    font-size: 2.8rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#about h1 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.faq {
+    margin: 20px 0;
+
+}
+
+.faq-item {
+    margin-bottom: 15px;
+    border: 1px solid #8b5a3c;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #3b2619;
+    animation: fadeIn 0.3s ease;
+}
+
+.faq-item:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.faq-question {
+    padding: 8px;
+    font-size: 1.14rem;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #5a3c2c;
+    color: #f5e1c5;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #5f361e;
+}
+
+.faq-answer {
+    display: none;
+
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    color: #f5e1c5;
+    background-color: #3b2619;
+    border-top: 1px solid #8b5a3c;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+
+}
+
+.faq-item.active .faq-answer {
+    display: block;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    animation: fadeIn 0.4s ease-in-out;
+
+
+}
+
+.faq-item.active .faq-question {
+    background-color: #5f361e;
+}
+
+.faq-answer ul {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.faq-answer li {
+    margin-bottom: 10px;
+}
+
+#about footer p {
+    margin-bottom: 100px;
+
+}
+
+
+a {
+
+    text-decoration: none;
+
+}
+
+
+.card {
+    z-index: 1;
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    background-color: #706D54;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+    /*
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.2);
+*/
+}
+
+.card.active {
+    height: 490px;
+}
+
+.banner {
+    z-index: 2;
+    position: relative;
+    margin-top: -154px;
+    width: 100%;
+    height: 150px;
+    background-image: url("https://i.pinimg.com/1200x/3a/0d/6b/3a0d6b1a6d22ba180a12d9a13f2af07b.jpg");
+    background-size: cover;
+    background-position: 50% 40%;
+    border-bottom: solid 1px lightgrey;
+
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+}
+
+.banner.active {
+    height: 0;
+
+}
+
+.photo {
+
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 3;
+    position: relative;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    background-color: white;
+    margin: 0 auto;
+    background-image: url("Untitled1.jpeg");
+    background-size: cover;
+    background-position: 50% 50%;
+    top: 75px;
+    -webkit-box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0px 0px 5px 1px rgba(0, 0, 0, 0.3);
+    -webkit-transition: top 0.7s ease-in-out, background 0.15s ease;
+    -moz-transition: top 0.7s ease-in-out, background 0.15s ease;
+    -o-transition: top 0.7s ease-in-out, background 0.15s ease;
+    -ms-transition: top 0.7s ease-in-out, background 0.15s ease;
+}
+
+.photo.active {
+    top: -80px;
+}
+
+.card ul {
+    list-style: none;
+    /* text-align: center; */
+    padding-left: 30%;
+    /* padding-left: 0; */
+    margin-top: 87px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    -webkit-transition: all 0.7s ease-in-out;
+    -moz-transition: all 0.7s ease-in-out;
+    -o-transition: all 0.7s ease-in-out;
+    -ms-transition: all 0.7s ease-in-out;
+}
+
+.card ul.active {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.card i {
+    font-size: 25px;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-right: 150px;
+    width: 300px;
+    ;
+    text-align: left;
+    color: #C7D0E1;
+}
+
+button.contact {
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 35px;
+    display: block;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    color: #2E1E1A;
+    background-color: #D29F80;
+    font-size: 12px;
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+}
+
+
+button.contact:hover {
+    cursor: pointer;
+    color: #F5E9E2;
+    background-color: #B37758;
+}
+
+button.contact:focus {
+    outline: 0;
+}
+
+
+
+#sendMailBtn:hover {
+    cursor: pointer;
+    color: #F5E9E2;
+    background-color: #B37758;
+}
+
+#sendMailBtn:focus {
+    outline: 0;
+}
+
+.social-media-banner {
+    width: 300px;
+    height: 50px;
+    margin-top: 0px;
+    padding-top: 10px;
+    text-align: center;
+    position: absolute;
+    background-color: #706d54;
+    -webkit-transition: all 1.5s ease-in-out;
+    -moz-transition: all 1.5s ease-in-out;
+    -o-transition: all 1.5s ease-in-out;
+    -ms-transition: all 1.5 ease-in-out;
+}
+
+.social-media-banner.active {
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    -ms-transition: all 0.1s ease-in-out;
+}
+
+.social-media-banner a i {
+    display: inline;
+
+    width: auto;
+    margin-right: 15px;
+    margin-left: 10px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+}
+
+.social-media-banner a i svg {
+    transition: all 0.6s ease-in-out;
+
+}
+
+.social-media-banner a i svg:hover {
+    scale: 1.15;
+    fill: rgb(255, 255, 255);
+    transition: all 0.6s ease-in-out;
+}
+
+.social-media-banner a i svg:active {
+    scale: 0.99;
+}
+
+.email-form {
+    height: 0;
+    overflow: hidden;
+    /* background-color: #C7D0E1; */
+    width: 300px;
+    z-index: -1;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    -ms-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.email-form.active {
+    height: 310px;
+    z-index: 3;
+    -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+}
+
+.email-form input {
+    width: 200px;
+    background: none;
+    padding: 10px 20px;
+    text-transform: capitalize;
+    /*    background-color: #a4acbc;*/
+    margin: 0 auto;
+    font-family: inherit;
+    border: 1px solid #fdfdfd4f;
+    color: rgb(236, 236, 236);
+    /*    border: 1px solid black;*/
+    margin-top: 15px;
+    height: 30px;
+    display: block;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+}
+
+.email-form input:focus,
+.email-form textarea:focus {
+    /*    border: none;*/
+    border: 1px solid rgba(255, 255, 255, 0.808);
+    outline: none;
+
+}
+
+.email-form ::-webkit-input-placeholder {
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+    /*    color: black;*/
+    color: wheat;
+}
+
+.email-form textarea {
+    width: 200px;
+    height: 100px;
+    resize: none;
+    padding: 5px 10px;
+
+    overflow-y: auto;
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+    font-size: 0.8rem;
+    /* Small text size */
+
+    text-transform: capitalize;
+    background: none;
+    color: white;
+    margin: 0 auto;
+    display: block;
+    margin-top: 20px;
+    border: 1px solid #dadee5;
+    font-family: inherit;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+}
+
+.email-form textarea::placeholder {
+    font-size: 0.7rem;
+    text-transform: none;
+    text-align: left;
+    opacity: 0.7;
+}
+
+.email-form button {
+    margin-top: 60px;
+}
+
+
+
+.confirmation {
+    display: none;
+    text-align: center;
+    padding: 30px;
+    background: #d5dbc6;
+    border-radius: 10px;
+    animation: fadeIn 1s ease forwards;
+    margin-top: 20px;
+}
+
+.confirmation .checkmark {
+    font-size: 2rem;
+    color: #6f4e37;
+    /* Coffee color */
+    animation: bounce 0.6s ease;
+}
+
+.confirmation h2 {
+    color: #4b2e2a;
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.confirmation p {
+    color: #6a4b3c;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Loading spinner animation for button */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+
+
+/* Animations */
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+/* ✅ MOBILE RESPONSIVENESS (max-width: 768px) */
+/* @media (max-width: 768px) {
+    body {
+        display: block;
+    }
+
+    .container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .aside {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-radius: 0;
+    }
+
+    .aside .logo p {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .aside .footer img {
+        display: none;
+    }
+
+    .tab-navigation {
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        padding: 10px 5px;
+        margin-bottom: 0;
+        border-radius: 0;
+        overflow-x: auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .tab {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        margin: 0 5px;
+        flex-shrink: 0;
+    }
+
+    .tab-content {
+        width: 100%;
+        padding: 15px;
+        height: auto;
+    }
+
+    #introduction h1 {
+        font-size: 2rem;
+    }
+
+    .intro-quote {
+        font-size: 1rem;
+        padding: 15px;
+        line-height: 1.5;
+    }
+
+    #cg-calculate {
+        padding: 20px 10px;
+    }
+
+    #cg-calculate h1 {
+        font-size: 2rem;
+    }
+
+    #cg-calculate .selection {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    #cg-calculate .selection input,
+    #cg-calculate select {
+        width: 100% !important;
+    }
+
+    #cg-calculate .selection label {
+        font-size: 1rem;
+    }
+
+    #inputTable,
+    #resultTable {
+        font-size: 0.8rem;
+    }
+
+    #cg-calculate input[type="text"],
+    #cg-calculate input[type="number"] {
+        font-size: 0.9rem;
+    }
+
+    #cg-calculate #addRow,
+    #cg-calculate #calculate {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+
+    #track-cgpa {
+        padding: 20px 10px;
+    }
+
+    #track-cgpa h1 {
+        font-size: 2rem;
+    }
+
+    #cgpa-graph svg {
+        width: 100% !important;
+        height: auto;
+    }
+
+    .cgpa-circle {
+        width: 100px;
+        height: 100px;
+        font-size: 1rem;
+    }
+
+    #about {
+        padding: 20px 10px;
+    }
+
+    #about h1 {
+        font-size: 2rem;
+    }
+
+    .faq-question {
+        font-size: 1rem;
+    }
+
+    .faq-answer {
+        font-size: 0.9rem;
+    }
+
+    footer {
+        font-size: 0.85rem;
+    }
+} */
+
+
+
+
+
+
+
+
+/* Extra Small Devices (phones, less than 600px) */
+@media (max-width: 599px) {
+
+    .container {
+        /* margin-top: 50px; */
+    }
+
+    /* Logo (GradeEasy) */
+    .aside .logo {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #3b2619;
+        padding: 10px;
+        text-align: center;
+        z-index: 1001;
+        /* Above nav */
+        transition: transform 0.3s ease;
+        /* Smooth hide/show */
+    }
+
+    .aside .logo.hidden {
+        transform: translateY(-100%);
+        /* Hide off-screen */
+    }
+
+    .aside .logo p {
+        font-size: clamp(1.5rem, 5vw, 2rem);
+        color: #f5e1c5;
+        margin: 0;
+    }
+
+
+    .toast-container {
+        position: fixed;
+        bottom: 100px;
+        right: 10px;
+        width: auto;
+        z-index: 1000;
+    }
+
+    .toast {
+        background-color: rgba(255, 255, 255, 0.144);
+        /* Semi-transparent white */
+        backdrop-filter: blur(10px);
+        /* Blur effect for glassmorphism */
+        -webkit-backdrop-filter: blur(10px);
+        /* Safari support */
+        font-size: 0.7rem;
+        align-items: center;
+        color: #f0d7c8;
+        font-weight: normal;
+        padding: 15px;
+        width: auto;
+        margin-top: 10px;
+        border-radius: 10px;
+        /* Rounded corners for a smooth look */
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        /* Subtle white border */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Slight shadow for depth */
+        position: relative;
+        overflow: hidden;
+        animation: slideIn 0.6s ease-out;
+    }
+
+    .aside {
+        /* display: none; */
+    }
+
+    .asidePhoneContainer {
+        display: none;
+        position: sticky;
+    }
+
+    .aside {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(59, 38, 25, 0.6);
+        /* Semi-transparent coffee color */
+        backdrop-filter: blur(10px);
+        /* Glassmorphism effect */
+        -webkit-backdrop-filter: blur(10px);
+        /* Safari support */
+        padding: 10px;
+        border: 2px solid rgba(229, 201, 201, 0.3);
+        /* Subtle coffee-colored border */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Slight shadow for depth */
+        border-radius: 10px;
+        /* Rounded corners for a smooth look */
+        z-index: 1000;
+        /* Above content */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+
+
+    .aside .logo {
+        background: none;
+        display: none;
+        font-size: 0rem;
+        text-align: left;
+    }
+
+    .aside .footer {
+        display: none;
+    }
+
+    .aside .tab-navigation {
+        background: none;
+
+        z-index: 1;
+        position: sticky;
+        bottom: 0px;
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        padding: 10px 5px;
+        margin-bottom: 0;
+        border-radius: 0;
+        overflow-x: auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .aside .tab-navigation .tab {
+        min-width: fit-content;
+        width: auto;
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        margin: 0 5px;
+        flex-shrink: 0;
+    }
+
+    .content {
+        width: 100%;
+        height: 90%;
+        overflow-y: auto;
+        padding: 2px;
+    }
+
+    .tab-content {
+        width: 100%;
+        height: auto;
+        /* Remove fixed height */
+        min-height: calc(100vh - 60px);
+        /* Adjust for fixed navigation */
+        padding-bottom: 60px;
+        /* Space for fixed nav */
+        box-sizing: border-box;
+    }
+
+    #introduction {
+        padding: 1px;
+        padding-top: 10px;
+        width: 100%;
+
+    }
+
+    #introduction h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .intro-quote {
+        text-align: justify;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #fff4ee;
+        /* Coffee brown text color */
+        background: rgba(255, 255, 255, 0.2);
+        /* Semi-transparent white for glassmorphism */
+        backdrop-filter: blur(10px);
+        /* Glassmorphism effect */
+        -webkit-backdrop-filter: blur(10px);
+        /* Safari support */
+        border-left: 5px solid #8b5a3c;
+        /* Coffee-colored left border */
+        padding: 20px 30px;
+        margin: 5px 0;
+        border-radius: 10px;
+        /* Rounded corners */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        /* Subtle shadow for depth */
+        background-color: rgba(245, 225, 197, 0.2);
+        /* Light coffee cream background */
+    }
+
+    .intro-quote strong {
+        color: #ff8848;
+        /* Highlighted coffee color for strong text */
+        font-weight: bold;
+    }
+
+    .intro-quote::before {
+        content: "❝";
+        font-size: 2rem;
+        color: #e49564;
+        position: absolute;
+        margin-left: -26px;
+        margin-top: -16px;
+    }
+
+    #introduction {
+        margin-bottom: 60%;
+    }
+
+
+
+    #introduction .buttons {
+        padding-right: 0px;
+        text-align: right;
+        font-size: 0.7rem;
+    }
+    
+    #introduction .buttons button {
+        font-size: 0.7rem;
+        background-color: #8b5a3c;
+        color: white;
+        padding: 7px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        margin-top: 10px;
+    }
+    
+
+
+    #cg-calculate {
+        margin-top: 20px;
+        margin-bottom: 700%;
+        padding: 0px;
+        /* margin: 0px; */
+        width: 100%;
+
+    }
+
+    #cg-calculate h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+
+    #cg-calculate .selection * {
+        margin-left: auto;
+        /* Push elements to the right */
+        margin-right: 0;
+        margin-bottom: 0px;
+        display: flex;
+        align-content: flex-start;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+
+    #cg-calculate #semesterName {
+
+        font-size: 0.8rem;
+        padding: 10px;
+        width: 50%;
+        margin: 8px;
+        color: #f5e1c5;
+        border: 1px solid #8b5a3c;
+        border-radius: 10px;
+    }
+
+    #cg-calculate #semesterName::placeholder {
+        font-size: 0.6rem;
+    }
+
+    #cg-calculate .selection label {
+        font-size: 0.8rem;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #f5e1c5;
+
+    }
+
+    #presetSelector {
+        padding: 5px 10px;
+        font-size: 0.6rem;
+        color: #f5e1c5;
+        background-color: #5a3c2c;
+        border: 1px solid #8b5a3c;
+        border-radius: 5px;
+        appearance: none;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+
+    #cg-calculate .selection .TrackthisCGPALabel {
+        display: flex;
+        align-items: center;
+        font-size: 0.6rem;
+        color: #f5e1c5;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    #cg-calculate .selection .TrackthisCGPALabel input {
+        word-wrap: break-word;
+        white-space: normal;
+    }
+
+    #cg-calculate .selection #TrackthisCGPA[type="checkbox"] {
+
+        appearance: none;
+
+        height: 5px !important;
+
+        /* appearance: auto; */
+        /* display: inline-block; */
+        /* width: 10px; */
+        color: #f5e1c5;
+        /* height: 10px; */
+        border: 0px solid #8b5a3c;
+        border-radius: 4px;
+        background-color: #3b2619;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+
+    #cg-calculate .selection #TrackthisCGPA[type="checkbox"]:checked::after {
+        /* content: '';
+        position: absolute;
+        top: 5px;
+        left: 11px;
+        width: 5px;
+        height: 13px;
+        border: solid #f5e1c5;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+        transition: all 0.8s ease; */
+        display: none;
+    }
+
+    #cg-calculate table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    #cg-calculate th,
+    td {
+        border: 1px solid #b16a6a;
+        padding: 0px;
+        text-align: center;
+        font-size: 0.7rem;
+    }
+
+    #cg-calculate th {
+        background-color: #7b3131;
+        padding: 5px;
+        font-size: 0.5rem;
+    }
+
+    #cg-calculate input {
+        width: 100%;
+        text-align: center;
+        /* padding: 20% 3%; */
+        padding: 10% 2%;
+        background-color: transparent;
+        color: white;
+        font-size: 0.7rem;
+        border: none;
+    }
+
+    #cg-calculate #inputTable *::placeholder {
+        font-size: 0.4rem;
+    }
+
+    .point {
+        fill: steelblue;
+        stroke: #fff;
+        stroke-width: 0.8;
+    }
+
+
+
+
+    #cg-calculate button {
+        padding: 8px 16px;
+        margin: 5px;
+        cursor: pointer;
+
+    }
+
+    #cg-calculate .delete {
+        background-color: #8b5a3c;
+        color: white;
+        font-size: 0.6rem;
+        padding: 3px 5px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    #cg-calculate #addRow {
+        background-color: #754a2f;
+        color: white;
+        font-size: 0.7rem;
+        padding: 6px 11px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+    #cg-calculate #calculate {
+        background-color: #51752f;
+        color: white;
+        font-size: 0.7rem;
+        padding: 6px 11px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s ease;
+    }
+
+
+    #cg-calculate #resultSection #cgpaResult {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    #resultTable th {
+        background-color: #7b3131;
+        padding: 5px;
+        font-size: 0.5rem;
+    }
+
+    #resultTable td {
+
+        font-size: 0.6rem;
+        padding: 5px;
+    }
+
+    #cg-calculate #inputSection {
+        margin-bottom: 20px;
+    }
+
+    #resultSection h2 {
+        margin-left: 20px;
+        font-size: 1.2rem;
+    }
+
+
+
+
+
+
+
+
+    #swe-outline {
+        margin-top: 00px;
+        padding: 0px 8px;
+    }
+
+
+
+    #swe-outline h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #swe-outline .header {
+        margin-bottom: 0px;
+    }
+
+    #swe-outline .header h1 {
+        font-size: 1.3rem;
+        color: #eed3d1;
+        /* Dark coffee color for text */
+    }
+
+
+    #swe-outline .buttons button {
+        font-size: 0.6rem;
+        padding: 4px 8px;
+        margin-left: 0px;
+        background-color: #8b5a2b;
+        /* Medium coffee brown */
+        color: #fffaf0;
+        /* Light cream for text */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: scale 0.3s ease, background-color 0.3s ease;
+    }
+
+    .introduceSE {
+        font-size: 0.9rem;
+        height: 40vh;
+        overflow: hidden;
+        position: relative;
+        animation: slideDown 0.5s ease-in-out;
+
+        /* Position relative for the gradient overlay */
+
+    }
+
+    .introduceSE::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        /* Position at the bottom */
+        left: 0;
+        right: 0;
+        height: 20%;
+        /* Height of the fade effect */
+        background: linear-gradient(to top, rgb(31, 10, 10), rgba(255, 255, 255, 0));
+        /* Fade-out effect */
+        pointer-events: none;
+        /* Allow clicks to pass through */
+    }
+
+    .introduceSE {
+        text-align: left;
+        max-width: 95%;
+        padding: 10px;
+    }
+
+    .introduceSE h1 {
+        font-size: 1.5em !important;
+        margin-bottom: 10px;
+    }
+
+    .introduceSE h2 {
+        font-size: 1.25em !important;
+        margin-top: 15px;
+    }
+
+    .introduceSE p {
+        font-size: 0.9em;
+        margin-bottom: 10px;
+    }
+
+    .introduceSE p[style*="font-size: 1.2em"] {
+        font-size: 1em;
+    }
+
+    .introduceSE a {
+        font-size: 0.9em;
+    }
+
+
+    .toggle-button-forShowandLess {
+        display: block;
+        background-color: #8b5a2b;
+        color: #fff;
+        font-size: 0.7rem;
+        padding: 4px 8px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        animation: slideDown 0.5s ease-in-out;
+
+    }
+
+    .toggle-button-forShowandLess:hover {
+        background-color: #a16e4d;
+        transform: scale(1.05);
+    }
+
+    .toggle-button-forShowandLess:active {
+        background-color: #754a2f;
+        transform: scale(0.95);
+    }
+
+
+
+    .expanded {
+        font-size: 0.9rem;
+        height: auto;
+        animation: slideDown 0.5s ease-in-out;
+
+    }
+
+    .expanded::after {
+        display: none;
+        animation: slideDown 0.5s ease-in-out;
+
+        /* Remove the gradient when expanded */
+    }
+
+
+
+    #swe-outline .level,
+    .term,
+    .subject,
+    .exam,
+    .syllabus {
+        margin: 7px 0;
+        position: relative;
+    }
+
+
+
+    #swe-outline .title {
+        font-size: 0.8rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        background-color: #4b2d14;
+        /* Light coffee brown for titles */
+
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.5s;
+    }
+
+    #swe-outline .toggle-btn {
+        /* opacity: 0.5; */
+        font-size: 0.5rem !important;
+        padding: 3px 6px;
+        background-color: #8b5a2b;
+        /* Medium coffee brown for toggle buttons */
+        color: #fffaf0;
+        /* Light cream for text */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: scale 0.3s ease;
+    }
+
+    #course-outline {
+        margin-top: 30px;
+    }
+
+    #swe-outline .term {
+        margin-left: 8px;
+    }
+
+    #swe-outline .subject {
+        margin-left: 8px;
+    }
+
+    #swe-outline .exam {
+        margin-left: 8px;
+    }
+
+    #swe-outline .syllabus {
+        font-size: 0.8rem;
+        margin-top: 8px;
+        margin-left: 15px;
+        padding: 10px;
+        background-color: #4c3325;
+        /* Light cream for syllabus background */
+        border: 1px solid #d3b7a044;
+        /* Light coffee brown border */
+        border-radius: 4px;
+        color: #fff3f2;
+        /* Dark coffee color for text */
+    }
+
+    .lastUpdateSyllebus {
+        font-size: 0.6rem;
+    }
+
+
+
+
+    #track-cgpa {
+        /* border: 1px solid white; */
+        padding: 0px;
+        padding-top: 20px;
+        width: 98vw;
+        /* box-sizing:content-box; */
+        box-sizing: border-box;
+        overflow-x: none;
+        height: auto;
+
+    }
+
+    #track-cgpa h1 {
+        font-size: 2rem;
+    }
+
+    .svg {
+        padding: 3px;
+        height: 20px;
+        width: 20px;
+        background-color: gray;
+        clip-path: circle(12px);
+        position: absolute;
+        right: 0;
+    }
+
+    #track-cgpa p {
+        margin-left: 30px;
+    }
+
+
+    #cgpa-graph {
+        text-align: center;
+        margin: auto;
+        margin-top: 20px;
+        /* display: none; */
+        width: 95vw;
+        overflow-x: scroll;
+    }
+
+    #track-cgpa #specific-results {
+        height: auto;
+        padding-bottom: 70px;
+    }
+
+
+    #track-cgpa #specific-results h2 {
+        margin: 20px 0px;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: bold;
+    }
+
+    #track-cgpa #specific-results p {
+        text-align: center;
+        font-size: 1rem;
+        font-style: italic;
+    }
+
+    #track-cgpa #specific-results .navigate-to-cg {
+        font-size: 0.6rem;
+    }
+
+
+    #track-cgpa #specific-results .edit-semester {
+        background-color: #215794;
+        color: white;
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #track-cgpa #specific-results .semester-entry {
+        font-size: 1rem;
+    }
+
+
+    #track-cgpa #specific-results .edit-semester {
+        background-color: #215794;
+        color: white;
+        font-size: 0.6rem;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+
+    #track-cgpa #specific-results .delete-semester {
+        background-color: #b32b2b;
+        color: white;
+        font-size: 0.6rem;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    #track-cgpa #specific-results .semester-link {
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 0.7rem;
+        color: #dfdfdf;
+        cursor: pointer;
+        transition: background-color 0.8s ease, color 1.3s ease;
+        background-color: #774e34;
+    }
+
+
+    #track-cgpa #specific-results .details-table {
+        width: 100%;
+        font-size: 0.8rem;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    #track-cgpa #specific-results .details-table th,
+    .details-table td {
+        padding: 5px;
+        text-align: left;
+    }
+
+    #track-cgpa #specific-results .details-table th {
+        background-color: #5a3c2c;
+        font-size: 0.7rem;
+    }
+
+
+    footer p {
+        margin-bottom: 100px;
+
+    }
+
+
+    #settings {
+        min-width: 99vw !important;
+        margin-top: 10px;
+        padding: 0px;
+    }
+
+
+
+    #settings label {
+        display: block;
+        margin: 0px 0px;
+    }
+
+    #settings h1 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .PresetPortion {
+        max-height: 350px;
+        min-width: 99vw !important;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        gap: 50px;
+        overflow-x: scroll;
+        padding: 10px;
+        background-color: #5a3c2c;
+        border-radius: 5px;
+        color: #f5e1c5;
+        animation: slideDown 0.5s ease-in-out;
+        flex-wrap: nowrap;
+        flex-direction: column;
+
+
+    }
+
+    .PresetPortion i {
+        font-size: 0.8rem;
+    }
+
+    #settings .PresetPortion #preset-options {
+        background-color: #9c4614;
+        color: rgb(238, 231, 231);
+        border-radius: 10px;
+        width: fit-content;
+        padding: 0px 10px;
+    }
+
+    /* Preset Button Styles */
+    #PresetButton {
+        background-color: #8b5a3c;
+        /* Default background color */
+        color: white;
+        /* Default text color */
+        font-size: 0.8rem;
+        /* Default font size */
+        padding: 10px 20px;
+        /* Padding for the button */
+        border: none;
+        /* Remove border */
+        border-radius: 5px;
+        /* Rounded corners */
+        cursor: pointer;
+        /* Pointer cursor on hover */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        /* Smooth transitions */
+    }
+
+    /* Hover State */
+    #PresetButton:hover {
+        background-color: #a16e4d;
+        /* Slightly lighter background on hover */
+        transform: scale(1.05);
+        /* Slightly enlarge the button */
+    }
+
+    /* Active State */
+    #PresetButton:active {
+        background-color: #754a2f;
+        /* Darker background on active */
+        transform: scale(0.95);
+        /* Slightly shrink the button */
+    }
+
+    /* Disabled State */
+    #PresetButton:disabled {
+        background-color: #d3b7a0;
+        /* Light gray background for disabled */
+        color: #ffffff80;
+        /* Faded text color */
+        cursor: not-allowed;
+        /* Not-allowed cursor */
+        opacity: 0.6;
+        /* Reduce opacity */
+    }
+
+
+
+
+    /* Add to existing stylesheet */
+    #presetModal {
+        z-index: 1000;
+    }
+
+
+
+    #presetModal .heading {
+        font-size: 1rem;
+    }
+
+
+    #presetGradingTable th,
+    #presetGradingTable td {
+        font-size: 0.7rem;
+        border: 1px solid #4b5563;
+        text-align: center;
+    }
+
+    .grading-start,
+    .grading-end,
+    .grading-gpa {
+        max-width: 100px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+
+    .preset-item {
+        width: 100%;
+        flex-grow: 1;
+        transition: background-color 0.3s;
+    }
+
+    .preset-item:hover {
+        background-color: #4b5563;
+    }
+
+
+
+    #presetSelector:active {
+        background-color: #8b5a3c;
+        border-color: #a16e4d;
+    }
+
+    #presetList {
+        display: flex;
+        width: 100%;
+        height: auto;
+        overflow-y: scroll;
+        flex-wrap: wrap;
+    }
+
+    #presetList .preset-item {
+        display: flex;
+        gap: 10px;
+        height: 95px;
+        min-width: 230px;
+        width: 139px;
+        justify-content: space-between;
+        flex-direction: column;
+        align-items: flex-start;
+        border: 1px solid #8b5a3c;
+        padding: 3px 8px;
+        background-color: #374151;
+        border-radius: 5px;
+        margin-bottom: 8px;
+        padding: 10px;
+        margin: 5px;
+        background-color: #5a3c2c;
+        color: #f5e1c5;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #presetList .preset-item:hover {
+        background-color: #8b5a3c;
+        transform: scale(1.02);
+    }
+
+    #presetList .preset-item:active {
+        background-color: #5a3c2c;
+        transform: scale(0.95);
+    }
+
+    #presetList .preset-item .edit-preset {
+        font-size: 0.7rem;
+        background-color: #107227;
+        /* Bootstrap Success Green */
+        color: #ffffff;
+        /* text-white */
+        ;
+        /* mr-2 */
+        transition: background-color 0.3s ease;
+        /* Smooth transition for hover effect */
+
+    }
+
+    #presetList .preset-item .delete-preset {
+        font-size: 0.7rem;
+        background-color: #721010;
+        /* Vibrant red */
+        color: #ffffff;
+        /* Tailwind's text-white */
+        transition: background-color 0.3s ease;
+        /* Smooth transition for hover effect */
+
+    }
+
+    #presetList .preset-item button {
+        padding: 3px 6px;
+        /* py-1 px-2 */
+        border-radius: 4px;
+        /* rounded */
+        margin-right: 5px;
+        cursor: pointer;
+    }
+
+    #presetList .preset-item button:hover {
+        transform: scale(1.05);
+    }
+
+    #presetModal {
+        border: 1px solid #b9b9b98c;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    #presetModal .heading input {
+        width: auto;
+        margin: 10px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: transparent;
+        color: rgb(209, 209, 209);
+        padding: 10px 20px;
+        border: 1px solid #8b5a3c;
+        outline: #361b06;
+    }
+
+    #presetModal .heading input:focus {
+        outline: none;
+        box-shadow: 0 0 5px #a16e4d;
+    }
+
+    #presetModal .heading .NamingButton {
+        margin-top: 40px;
+    }
+
+    #presetModal .presetContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    #presetModal .mainInput {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.8rem;
+    }
+
+    #presetModal .mainInput input {
+        width: auto;
+        margin: 10px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: transparent;
+        color: rgb(209, 209, 209);
+        padding: 10px 10px;
+        border: 1px solid #8b5a3c;
+        outline: #361b06;
+    }
+
+    #presetModal .mainInput input:focus {
+        outline: none;
+        box-shadow: 0 0 5px #a16e4d;
+    }
+
+    .MPCdiv {
+        margin-top: 20px;
+    }
+
+
+    #presetModal .gradingInput {
+
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 10px;
+
+    }
+
+    #presetModal .gradingInput input {
+        width: auto;
+        text-align: center;
+        background-color: transparent;
+        color: rgb(209, 209, 209);
+        padding: 2px 10px;
+        border: none;
+        outline: #361b06;
+    }
+
+    #presetModal .gradingInput input:focus {
+        outline: none;
+        box-shadow: 0 0 5px #a16e4d;
+    }
+
+    #presetModal .gradingInput .grading-grade {
+        width: 50px;
+    }
+
+    #presetModal .gradingInput .remove-row {
+        font-size: 0.6rem;
+        padding: 2px 3px;
+        background-color: #b32b2b;
+        border: none;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+    }
+
+    #presetModal .gradingInput .remove-row:hover {
+        background-color: #9f1c1c;
+        transform: scale(1.02);
+    }
+
+
+    #addGradeRange {
+        background-color: #3b7429;
+        color: white;
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    #addGradeRange:hover {
+        background-color: #2e681c;
+        transform: scale(1.02);
+    }
+
+    .settingsApplyDiscardButton {
+        margin: 30px 0px 10px 0px;
+    }
+
+    .settingsApplyDiscardButton button {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .settingsApplyDiscardButton #applyPreset {
+        background-color: #3b7429;
+
+    }
+
+    .settingsApplyDiscardButton #discardPreset {
+        background-color: #b32b2b;
+    }
+
+    .settingsApplyDiscardButton button:hover {
+        transform: scale(1.02);
+    }
+
+    .settingsApplyDiscardButton button:active {
+        transform: scale(0.95);
+    }
+
+
+
+
+
+
+    .GradeTable {
+        display: flex;
+        justify-content: flex-end
+    }
+
+    #ApplyButton {
+        background-color: #09ad2f;
+        padding: 4px 10px;
+    }
+
+    #DiscardButton {
+        background-color: rgb(196, 0, 0);
+        padding: 4px 10px;
+    }
+
+    #marks-settings {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    #cgpa-calculator-settings {
+        /* width: 100%; */
+        justify-content: space-around;
+        display: flex;
+        flex-direction: row;
+        margin: auto;
+
+
+        padding: 20px;
+        background: #3b2619;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+
+    #cgpa-calculator-settings input,
+    #cgpa-calculator-settings select {
+        padding: 7px 0px;
+        background-color: #8b5a3c;
+
+        text-align: center;
+        color: rgb(182, 177, 177);
+        background: none;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    #cgpa-calculator-settings input {
+        background-color: transparent;
+        color: white;
+        border: 1px solid rgb(187, 187, 187);
+        border-radius: 5px;
+    }
+
+    #cgpa-calculator-settings .GradeTable input {
+        background-color: transparent;
+        border: transparent;
+        color: #cccccc;
+
+    }
+
+
+    #cgpa-calculator-settings select {
+        background-color: #8b5a3c;
+        color: #e9cec0;
+    }
+
+    #grading-table-section {
+        width: 50%;
+        height: 40%;
+        font-size: 0.8rem;
+    }
+
+    #cgpa-calculator-settings table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    #cgpa-calculator-settings table th,
+    #cgpa-calculator-settings table td {
+        font-size: 0.8rem;
+
+        text-align: center;
+    }
+
+    #cgpa-calculator-settings #grading-table button {
+        /* margin-top: 5px; */
+        font-size: 0.7rem;
+        background-color: #4b2d14;
+        color: #e4802f;
+        padding: 4px 6px;
+        cursor: pointer;
+    }
+
+    #grading-table-section {
+        display: none;
+    }
+
+    footer {
+        position: relative;
+        margin-top: 20px;
+        text-align: center;
+        margin-bottom: 400px;
+    }
+
+    .flex-row {
+        display: flex;
+        gap: 10px;
+    }
+
+    .flex-row>div {
+        flex: 1;
+    }
+
+    #version {
+        text-align: center;
+        margin: 40px;
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #about {
+        width: 100%;
+        margin-bottom: 60%;
+        padding: 5px;
+        color: #f5e1c5;
+        overflow-y: auto;
+
+    }
+
+
+    #about h1 {
+        font-size: 2rem;
+        margin: 20px;
+        margin-bottom: 30px;
+    }
+
+    .faq {
+        margin: 30px 0;
+
+    }
+
+    .faq-item {
+
+        margin-bottom: 15px;
+        border: 1px solid #8b5a3c;
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #3b2619;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .faq-item:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .faq-question {
+        padding: 8px;
+        font-size: 1rem;
+        font-weight: normal;
+        cursor: pointer;
+        background-color: #5a3c2c;
+        color: #f5e1c5;
+        transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+        background-color: #5f361e;
+    }
+
+    .faq-answer {
+        display: none;
+
+        padding: 5px 8px;
+        font-size: 0.9rem;
+        color: #f5e1c5;
+        background-color: #3b2619;
+        border-top: 1px solid #8b5a3c;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+
+    }
+
+    .faq-item.active .faq-answer {
+        display: block;
+        text-align: justify;
+        transition: max-height 0.4s ease, padding 0.4s ease;
+        animation: fadeIn 0.4s ease-in-out;
+
+
+    }
+
+    .faq-item.active .faq-question {
+        background-color: #5f361e;
+    }
+
+    .faq-answer ul {
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-answer li {
+        margin-bottom: 10px;
+    }
+
+
+
+
+
+    .social-media-banner a i svg {
+        fill: #f5e1c5;
+
+    }
+
+
+
+
+
+}
+
+/* Small Devices (portrait tablets, 600px and up) */
+@media (min-width: 600px) and (max-width: 899px) {
+
+    body {
+        display: block;
+        overflow-x: hidden;
+    }
+
+    .container {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .aside {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-radius: 0;
+    }
+
+    .aside .logo p {
+        display: none;
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .tab-navigation {
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        padding: 10px 5px;
+        margin-bottom: 0;
+        border-radius: 0;
+        overflow-x: auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .tab {
+        min-width: fit-content;
+        width: auto;
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        margin: 0 5px;
+        flex-shrink: 0;
+    }
+
+
+}
+
+/* Medium Devices (landscape tablets, 900px and up) */
+@media (min-width: 900px) and (max-width: 1199px) {
+
+    body {
+        display: block;
+        overflow-x: hidden;
+    }
+
+
+    .aside {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-radius: 0;
+    }
+
+    .aside .logo p {
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    .tab-navigation {
+        flex-direction: row;
+        width: 100%;
+        height: auto;
+        padding: 10px 5px;
+        margin-bottom: 0;
+        border-radius: 0;
+        overflow-x: auto;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .tab {
+        min-width: fit-content;
+        width: auto;
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        margin: 0 5px;
+        flex-shrink: 0;
+    }
+}

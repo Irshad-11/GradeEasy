@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GradeEasy - CGPA Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style_1.css" /> -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+    <div class="toast-container"></div>
+    <div class="container" id="container">
+        <div class="aside">
+            <!-- Navigation Tabs -->
+
+            <div class="logo">
+                <p>Grade
+                    Easy</p>
+            </div>
+            <aside class="tab-navigation">
+                <div class="tab" data-tab="introduction">Introduction</div>
+                <div class="tab" data-tab="cg-calculate">CG Calculate</div>
+                <div class="tab" data-tab="track-cgpa">Track CGPA</div>
+                <div class="tab" data-tab="settings">Settings</div>
+                <div class="tab" data-tab="swe-outline">Dpt. SE, BDU</div>
+                <div class="tab" data-tab="about">About GradeEasy</div>
+            </aside>
+            <div class="footer">
+                <img src="Untitled1.jpeg" alt="" onclick="goToFAQ('AboutUs')">
+            </div>
+        </div>
+
+
+        <div>
+            <!-- Main Content -->
+            <main class="content">
+                <!-- Introduction Tab -->
+                <section id="introduction" class="tab-content">
+                    <h1>GradeEasy</h1>
+                    <blockquote class="intro-quote">
+                        Stop decoding your GPA! Feeling lost in a sea of numbers? 👋 Say hello to
+                        <strong><i>GradeEasy</i></strong>, your instant CGPA clarity tool! 🎉 We're here to simplify
+                        your university life and make understanding your academic progress a breeze. <i>Think sunny
+                            stroll, not number crunch!</i> ☀️ <br>
+
+                        GradeEasy is the straightforward online calculator that demystifies your academic standing.
+                        Bonus? It saved your progress and lives right on your device! 🤩 Access your academic wins
+                        anytime, anywhere! Whether you're nailing assignments, crushing midterms, or acing finals, we've
+                        got you covered. Our clean, <strong>customizable features</strong> adapt to your university's
+                        unique grading system.
+                        <br>
+                        But the good news doesn't stop there! 🥳 GradeEasy lets you effortlessly <strong>monitor your
+                            performance</strong> throughout your entire university adventure! Picture your progress
+                        blooming beautifully! 🌸 We even create a sleek <strong>visual graph</strong> of your results,
+                        so you can see your hard work paying off in real-time!
+                        <br>
+                        <br>
+                        Ready to ditch the stress and embrace academic confidence? Let <strong>GradeEasy</strong> inject
+                        some ease into your university experience! Let's calculate your awesome CGPA and map your route
+                        to success – the simple and effective way! 🚀🌟
+                    </blockquote>
+                    <div class="buttons">
+                        <button > <a href="UserManual.html" target="_blank">User Manual</a></button>
+                        <button onclick="goToFAQ('AboutUs')">Have a Question ?</button>
+                        <button class="navigate-btn" data-target="cg-calculate">Calculate Your CG now</button>
+                    </div>
+                </section>
+
+                <!-- CG Calculate Tab -->
+                <section id="cg-calculate" class="tab-content">
+                    <h1>CGPA Calculator</h1>
+
+                    <div class="selection">
+                        <input type="text" class="semesterName" id="semesterName"
+                            placeholder="Semester Name eg. 1.1 (recmnd)" />
+
+                        <div class="mb-4">
+                            <label class="block text-white mb-1">Select Preset</label>
+                            <select id="presetSelector">
+                                <option value="">BDU (default)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="TrackthisCGPALabel">
+                                <input type="checkbox" id="TrackthisCGPA" />
+                                Track this Semester
+                            </label>
+                        </div>
+                    </div>
+
+                    <div id="inputSection">
+                        <table id="inputTable">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Course Name</th>
+                                    <th>CA</th>
+                                    <th>Mid</th>
+                                    <th>Final</th>
+                                    <th>Credit</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="inputBody"></tbody>
+                        </table>
+                        <button id="addRow">+ Add Row</button>
+                        <button id="calculate">Calculate</button>
+
+
+
+                    </div>
+
+                    <div id="resultSection" class="hidden">
+                        <h2>Results</h2>
+                        <table id="resultTable">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Course</th>
+                                    <th>CA</th>
+                                    <th>Mid</th>
+                                    <th>Final</th>
+                                    <th>Credit</th>
+                                    <th>Total Marks</th>
+                                    <th>Max Marks</th>
+                                    <th>%</th>
+                                    <th>Grade</th>
+                                    <th>GP</th>
+                                    <th>GP × Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultBody"></tbody>
+                        </table>
+                        <div id="cgpaResult"></div>
+                    </div>
+                </section>
+
+                <!-- Track CGPA Tab -->
+                <section id="track-cgpa" class="tab-content">
+                    <h1>Track Your CGPA <span onclick="goToFAQ('TrackCGPAFAQ')"><svg class="svg"
+                                xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+                                fill="#FFFFFF">
+                                <path
+                                    d="M424-320q0-81 14.5-116.5T500-514q41-36 62.5-62.5T584-637q0-41-27.5-68T480-732q-51 0-77.5 31T365-638l-103-44q21-64 77-111t141-47q105 0 161.5 58.5T698-641q0 50-21.5 85.5T609-475q-49 47-59.5 71.5T539-320H424Zm56 240q-33 0-56.5-23.5T400-160q0-33 23.5-56.5T480-240q33 0 56.5 23.5T560-160q0 33-23.5 56.5T480-80Z" />
+                            </svg></span></h1>
+                    <p>Perfromance Graph</p>
+                    <div id="cgpa-graph"></div>
+
+                    <div id="specific-results"></div>
+                </section>
+
+                <!-- Settings Tab -->
+                <section id="settings" class="tab-content">
+                    <h1 style="position: relative;">Settings <span onclick="goToFAQ('SettingsFAQ')"><svg class="svg"
+                                xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px"
+                                fill="#FFFFFF">
+                                <path
+                                    d="M424-320q0-81 14.5-116.5T500-514q41-36 62.5-62.5T584-637q0-41-27.5-68T480-732q-51 0-77.5 31T365-638l-103-44q21-64 77-111t141-47q105 0 161.5 58.5T698-641q0 50-21.5 85.5T609-475q-49 47-59.5 71.5T539-320H424Zm56 240q-33 0-56.5-23.5T400-160q0-33 23.5-56.5T480-240q33 0 56.5 23.5T560-160q0 33-23.5 56.5T480-80Z" />
+                            </svg></span> </h1>
+                    <div class="PresetPortion">
+
+                        <button id="PresetButton"> + Add new Preset</button>
+                        <!-- Add this inside <div id="cgpa-calculator-settings">, after <button id="PresetButton"> -->
+                        <div id="presetList"></div>
+
+                    </div>
+
+
+                    <div id="presetModal" class="hidden">
+                        <div class="presetContainer">
+                            <div class="heading">
+                                <h2 class="text-2xl font-bold text-white mb-4">Create New Preset</h2>
+                                <div class="NamingButton">
+                                    <label class="block text-white mb-1">Preset Name</label>
+                                    <input id="presetName" type="text" placeholder="Enter preset name">
+                                </div>
+                            </div>
+                            <div class="mainInput">
+                                <div id="marksInputs" class="mb-4">
+                                    <div class="flex space-x-4">
+                                        <div>
+                                            <label class="block text-white mb-1">Total Marks</label>
+                                            <input id="totalMarksInput" type="number" placeholder="e.g., 300">
+                                        </div>
+                                        <div>
+                                            <label class="block text-white mb-1">Credit</label>
+                                            <input id="creditInput" type="number" placeholder="e.g., 3">
+                                        </div>
+                                    </div>
+                                    <div class="MPCdiv">
+                                        Marks per Credit: <span id="marksPerCreditDisplay">N/A</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="gradingInput">
+
+                                <h3 class="text-xl font-bold text-white mb-2">Grading Table <i
+                                        style="opacity: 0.5; font-size: 0.8rem;">click to edit</i></h3>
+                                <!-- Replace the existing <table id="presetGradingTable"> inside <div id="presetModal"> -->
+                                <table id="presetGradingTable" class="w-full mt-2">
+                                    <thead>
+                                        <tr>
+                                            <th class="p-2">Start (%)</th>
+                                            <th class="p-2">End (%)</th>
+                                            <th class="p-2">GPA</th>
+                                            <th class="p-2">Grade</th>
+                                            <th class="p-2">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="presetGradingTableBody"></tbody>
+                                </table>
+                                <button id="addGradeRange"
+                                    class="mt-2 bg-green-600 hover:bg-green-700 text-white py-1 px-2 rounded">Add
+                                    Range</button>
+                            </div>
+                        </div>
+
+                        <div class="settingsApplyDiscardButton">
+                            <button id="applyPreset"
+                                class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">Apply</button>
+                            <button id="discardPreset"
+                                class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded">Discard</button>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <p id="version">&copy; GradeEasy</p>
+                </section>
+
+                <!-- Dpt. SE Tab -->
+                <section id="swe-outline" class="tab-content">
+                    <h1>Department of <span id="department-name" data-text="Software Engineering"> Software
+                            Engineering</span></h1>
+                    <div class="introduceSE" id="introduceSE"
+                        style="position: relative; font-family: Arial, sans-serif; line-height: 1.6; color: #3c2f2f; max-width: 1000px; margin: 0 auto; margin-bottom: 20px; padding: 20px; background-color: #f5e6cc;">
+                        <span onclick="goToFAQ('PersonalThought')"><svg class="svg" xmlns="http://www.w3.org/2000/svg"
+                                height="30px" viewBox="0 -960 960 960" width="30px" fill="#FFFFFF">
+                                <path
+                                    d="M424-320q0-81 14.5-116.5T500-514q41-36 62.5-62.5T584-637q0-41-27.5-68T480-732q-51 0-77.5 31T365-638l-103-44q21-64 77-111t141-47q105 0 161.5 58.5T698-641q0 50-21.5 85.5T609-475q-49 47-59.5 71.5T539-320H424Zm56 240q-33 0-56.5-23.5T400-160q0-33 23.5-56.5T480-240q33 0 56.5 23.5T560-160q0 33-23.5 56.5T480-80Z" />
+                            </svg></span>
+
+                        <h1 style="color: #6b4e31; text-align: center; font-size: 2.5em; margin-bottom: 20px;">
+                            Discover the Tech Haven at BDU’s Software Engineering Department! 🚀</h1>
+
+                        <p style="font-size: 1.2em; color: #4a3728; text-align: center; margin-bottom: 30px;">
+                            Hey, tech dreamers! I’m grateful to be a student in the <strong>Software Engineering
+                                Department</strong> at <strong>Bangladesh Digital University (BDU)</strong>, and I can’t
+                            wait to tell you why this place is a game-changer for anyone passionate about coding and
+                            innovation! 🎉
+                        </p>
+
+                        <h2 style="color: #8b5e3c; font-size: 1.8em; margin-top: 30px;">A High-Tech Campus Near Dhaka!
+                            📍</h2>
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">
+                            Located near the vibrant <strong>Kaliakoir Hi-Tech Park</strong>, BDU is the first
+                            digitalized government university that showcases cutting-edge ideas. The campus is a coder’s
+                            dream, with
+                            <strong>modern facilities</strong>, super-cool
+                            <strong>smart classrooms</strong>, <strong>24/7 lab access</strong>,
+                            lightning-fast WiFi, and a fully digital setup. It’s the perfect spot to dive into
+                            programming and bring your ideas to life! 💡
+                        </p>
+
+                        <h2 style="color: #8b5e3c; font-size: 1.8em; margin-top: 30px;">Why BDU’s Software Engineering
+                            Program Rocks! 💻</h2>3
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">
+                            If you want to master at coding, or shape the future of technology, BDU’s Software
+                            Engineering Department is the right place for you. It is part of the <strong>Faculty of
+                                Software & Machine Intelligence Engineering</strong>. Here, you can explore exciting
+                            opportunities in tech. I will invite you to be a part of this journey! The university offers
+                            an incredible program
+                            that equips students for the IT world, and you can join right after HSC through their
+                            <i>(currently GST)</i>
+                            admission process. How awesome is that? 🎓
+                        </p>
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">
+                            Though BDU is a new player in the game, it’s growing at lightning speed! Each batch enjoys
+                            upgraded facilities, cutting-edge resources, and a budding alumni network. The university is
+                            laying the foundation for a bright future, and I’m so excited to be part of it! 🌟
+                        </p>
+
+                        <h2 style="color: #8b5e3c; font-size: 1.8em; margin-top: 30px;">Inspiring Faculty That Truly
+                            Care! 🛠</h2>
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">
+                            The faculty at BDU is nothing short of amazing. These experts in <strong>Computer
+                                Science</strong>, <strong>Software Engineering</strong>, and emerging tech trends are
+                            passionate about teaching and mentoring. They go the extra mile to ensure students like me
+                            are ready to conquer the tech industry with confidence! 🙌
+                            Teachers provide extra effort in the lab after regular classes to help us grow a strong lab
+                            culture at the university. They organize both intra-department and inter-department coding
+                            competitions, which encourage teamwork and skill development among students. This support
+                            helps us excel and become better prepared for our future careers!
+                        </p>
+
+                        <h2 style="color: #8b5e3c; font-size: 1.8em; margin-top: 30px;">A Future Full of Possibilities!
+                            ✨</h2>
+                        <p style="font-size: 1.1em; margin-bottom: 20px;">
+                            I truly believe that Bangladesh Digital University (BDU) is set to become <strong> one of
+                                the best University</strong> in the country. With its strong focus on in-demand fields
+                            like <strong> Software Engineering, Robotics, Cyber Security, Educational Technology, Data
+                                science </strong> and Upcoming departments such as <strong> Artificial Intelligence ,
+                                Game Development , Nano Science and Technology </strong> and so on, the future looks
+                            bright for students here. As a proud member of the sixth batch, I’m filled with excitement
+                            for all the opportunities ahead! Wishing BDU and all its departments the very best in their
+                            journey toward excellence! 💖
+                        </p>
+
+                        <p style="font-size: 1.2em; text-align: center; margin-top: 40px; color: #a67c00;">
+                            Ready to kickstart your tech journey? Check out BDU’s <a href="https://bdu.ac.bd/"
+                                style="color: #6b4e31; text-decoration: none; font-weight: bold;">official website</a>
+                            to explore the Software Engineering program and join the adventure! 🚀
+                        </p>
+
+                        <p style="font-size: 1.1em; text-align: center; margin-top: 20px; color: #7a6a55;">
+                            With all my love and enthusiasm, <br> — <strong>Irshad Hossain</strong> from the 1st Batch,
+                            SE Department
+                            ☕💻
+                        </p>
+                    </div>
+                    <button id="toggle-button-forShowandLess" class="toggle-button-forShowandLess"
+                        onclick="toggleContentButton()">Show More</button>
+                    <div class="header">
+                        <h1>Course Outline</h1>
+                        <div class="buttons" style="position: relative;">
+                            <button onclick="expandAll()">Expand All</button>
+                            <button onclick="collapseAll()">Collapse All</button>
+                            <span onclick="goToFAQ('CGPAvsSGPA')" style="margin: 20px;"><svg class="svg"
+                                    xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960"
+                                    width="30px" fill="#FFFFFF">
+                                    <path
+                                        d="M424-320q0-81 14.5-116.5T500-514q41-36 62.5-62.5T584-637q0-41-27.5-68T480-732q-51 0-77.5 31T365-638l-103-44q21-64 77-111t141-47q105 0 161.5 58.5T698-641q0 50-21.5 85.5T609-475q-49 47-59.5 71.5T539-320H424Zm56 240q-33 0-56.5-23.5T400-160q0-33 23.5-56.5T480-240q33 0 56.5 23.5T560-160q0 33-23.5 56.5T480-80Z" />
+                                </svg></span>
+                        </div>
+                    </div>
+
+                    <div id="course-outline"></div>
+                    <div class="lastUpdateSyllebus">&copy;Session 2024-25 Software Engineering Course Outline ,
+
+                        <br>Bangladesh Digital University (BDU)
+                    </div>
+        </div>
+        </section>
+
+        <!-- About GradeEasy Tab -->
+        <section id="about" class="tab-content">
+            <h1>About GradeEasy</h1>
+            <h2>FAQs</h2>
+            <div class="faq">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item">
+                    <div class="faq-question">Q: What exactly is GradeEasy?</div>
+                    <div class="faq-answer">
+                        A: GradeEasy is a user-friendly web application designed to help university students
+                        easily calculate and track their Cumulative Grade Point Average (CGPA). It takes into
+                        account different grading components and allows for customization based on
+                        university-specific grading systems.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item">
+                    <div class="faq-question">Q: What makes GradeEasy different from other CGPA calculators?
+                    </div>
+                    <div class="faq-answer">
+                        A: GradeEasy stands out due to its customizable settings that allow students to adapt
+                        the calculator to their university's unique grading rules. It also shows performance
+                        graphs, saves semester data locally, providing easy access without requiring an internet
+                        connection or sign-up.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item">
+                    <div id="SettingsFAQ" class="faq-question">Q: My university has a different grading system. Can I still use
+                        GradeEasy?</div>
+                    <div class="faq-answer">
+                        A: Absolutely! GradeEasy includes a customizable settings panel where you can create custom grading presets, define mark distribution (e.g., total marks, credit hours), and set grading scales (e.g., percentage ranges, GPA, and letter grades) to match your university’s system. In the Settings tab, click the <span style="background-color: #8b5a3c; padding: 2px 4px; border-radius: 4px; font-size: 0.7rem;">+ Add new Preset</span> button to open the preset modal. Enter a preset name, specify total marks and credit hours, define the grading table (start/end percentages, GPA, and grade), and click "Apply" to save the preset.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">Q: What is the formula GradeEasy uses to calculate CGPA?</div>
+                    <div class="faq-answer">
+                        A: GradeEasy calculates CGPA using the formula:
+                        $$ \text{CGPA} = \frac{\sum (\text{Course Grade} \times \text{Credit Hour})}{\sum
+                        (\text{Credit Hour})} $$
+                    </div>
+                </div>
+                <!-- FAQ Item 5 -->
+                <div class="faq-item">
+                    <div class="faq-question">Q: Can you explain the calculation process step-by-step?</div>
+                    <div class="faq-answer">
+                        A: Here's how GradeEasy calculates your CGPA:
+                        <ul>
+                            <li>It converts the total marks for each course into corresponding grade points
+                                based on the defined grading scale.</li>
+                            <li>It multiplies the grade points for each course by its respective credit hour.
+                            </li>
+                            <li>It sums up all the <code>(grade points × credit hours)</code> for all courses.
+                            </li>
+                            <li>Finally, it divides this sum by the total sum of all credit hours to get the
+                                final CGPA.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- FAQ Item 6 -->
+                <div class="faq-item">
+                    <div class="faq-question">Q: What kind of customizations can I make in the Settings Tab?
+                    </div>
+                    <div class="faq-answer">
+                        A: In the Settings Tab, you can create custom grading
+                        presets, define mark distribution for different assessment components, and adjust other settings.
+                    </div>
+                </div>
+                <!-- FAQ Item 7 -->
+                <div class="faq-item">
+                    <div class="faq-question" id="TrackCGPAFAQ" >Q: How does the Track CGPA tab work?</div>
+                    <div class="faq-answer">
+                        A: The Track CGPA Tab stores your semester-wise CGPA records and visualizes your
+                        progress over time using line graphs. You can also view detailed reports for each
+                        semester. Remember to check Track this semester in the CG Calculate tab to track it here.
+                        <br>
+                        <br>
+                        <i style="color: #fcc4bd; font-style: italic; margin-top: 10px;"><strong>Note:</strong> This CGPA is for S-CGPA (Semester CGPA), not the final CGPA of your entire Honors life! 😎 To calculate your overall Honors CGPA, use the formula: \[
+                            \frac{\sum (\text{Semester CGPA} \times \text{Semester Credit Hours})}{\text{Total Credit Hours}}
+                            \]  Put some pressure on yourself, broo, and track those grades like a pro! 🚀</i>
+
+
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question" id="CGPAvsSGPA">Q: What is the Course Outline section in the Software Engineering tab?</div>
+                    <div class="faq-answer">
+                        A: The course outline provided here belongs to the Software Engineering Department. These courses will be taught throughout the entire duration of the honors program, equipping students with comprehensive knowledge in relevant topics to excel in their professional careers. This outline is specifically designed for the first batch of the Software Engineering Department, session 2024-25, at BDU. 
+
+                        If you have any questions about the courses or wish to provide feedback, please click the <span style="background-color: #8b5a3c; font-size: 0.8rem; padding: 2px 4px; border-radius: 4px; cursor: pointer;" onclick="goToFAQ('AboutUs')">Reach Us</span>.
+                    </div>
+
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question" id="PersonalThought">Q: Why is the Department of Software Engineering Introduced in GradeEasy?</div>
+                    <div class="faq-answer">
+                        A: This is my personal opinion about the Software Engineering Department at Bangladesh Digital University (BDU), where I study, and I’m excited to share why I included it in GradeEasy. First of all, BDU is a newly established government university, and its Software Engineering Department is truly exceptional. These ongoing department and also Upcoming joss joss department is unmatched, even compared to well-established universities, thanks to its modern facilities and innovative approach. Second, the location of BDU is a game changer because it’s near Dhaka, the IT hub and capital of Bangladesh. This makes it so easy to communicate with big tech companies located in Dhaka, opening doors for students. Lastly, being near Dhaka brings extra blessings to BDU. To develop your skills according to your passion, the campus doesn’t matter—really, it doesn’t matter—because BDU provides everything you need. I hope a next-generation, developed campus will be built, and if it is, this university will be unstoppable. With 24/7 lab access, a high-speed Wi-Fi system, smart classrooms, and digitalized systems, studying at BDU feels like heaven. If you lack any of these, you realize how important they are. What more does an IT student need? We don’t need to go outside the campus for experiments; we can control the whole world from a tiny lab room. I am proud and deeply grateful to Allah for the chance to study in this wonderful department, and I feel everyone should know about it. Best wishes for the Software Engineering Department! Visit our official website to learn more.
+                    </div>
+
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question">Q: Provide me Guideline</div>
+                    <div class="faq-answer">
+                        A: Please pay visit the <a href="UserManual.html" target="_blank" style="text-decoration: none; color: #f5e6cc !important; background-color: #8b5a3c; padding: 2px 4px; ">User Manual</a> . 
+                    </div>
+
+                </div>
+
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item">
+                    <div class="faq-question" id="AboutUs">Q: Reach Us</div>
+                    <div class="faq-answer">
+                        <div class="card">
+                            <div class="photo data-tilt data-tilt-glare"></div>
+                            <div class="banner"></div>
+                            <ul>
+                                <li><b>Irshad Hossain</b></li>
+                                <li style="font-size: 1rem;">Student , SE , BDU</li>
+
+                            </ul>
+                            <button class="contact" id="main-button">click to get in touch 》</button>
+                            <div class="social-media-banner">
+                                <a href="https://www.facebook.com/irshad.risad" target="_blank"><i
+                                        class="fa fa-facebook"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                            width="30" height="30" viewBox="0 0 24 24">
+                                            <path
+                                                d="M12,2C6.477,2,2,6.477,2,12c0,5.013,3.693,9.153,8.505,9.876V14.65H8.031v-2.629h2.474v-1.749 c0-2.896,1.411-4.167,3.818-4.167c1.153,0,1.762,0.085,2.051,0.124v2.294h-1.642c-1.022,0-1.379,0.969-1.379,2.061v1.437h2.995 l-0.406,2.629h-2.588v7.247C18.235,21.236,22,17.062,22,12C22,6.477,17.523,2,12,2z">
+                                            </path>
+                                        </svg></i></a>
+                                <a href="https://www.linkedin.com/in/irshad-hossain-785548323/" target="_blank"><i
+                                        class="fa fa-linkedin"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                            width="30" height="30" viewBox="0 0 24 24">
+                                            <path
+                                                d="M19,3H5C3.895,3,3,3.895,3,5v14c0,1.105,0.895,2,2,2h14c1.105,0,2-0.895,2-2V5C21,3.895,20.105,3,19,3z M9,17H6.477v-7H9 V17z M7.694,8.717c-0.771,0-1.286-0.514-1.286-1.2s0.514-1.2,1.371-1.2c0.771,0,1.286,0.514,1.286,1.2S8.551,8.717,7.694,8.717z M18,17h-2.442v-3.826c0-1.058-0.651-1.302-0.895-1.302s-1.058,0.163-1.058,1.302c0,0.163,0,3.826,0,3.826h-2.523v-7h2.523v0.977 C13.93,10.407,14.581,10,15.802,10C17.023,10,18,10.977,18,13.174V17z">
+                                            </path>
+                                        </svg></i></a>
+                                <a href="https://github.com/Irshad-11" target="_blank"><i class="fa fa-github"><svg
+                                            xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="30"
+                                            viewBox="0 0 24 24">
+                                            <path
+                                                d="M 12 2 C 6.476563 2 2 6.476563 2 12 C 2 17.523438 6.476563 22 12 22 C 17.523438 22 22 17.523438 22 12 C 22 6.476563 17.523438 2 12 2 Z M 12 4 C 16.410156 4 20 7.589844 20 12 C 20 12.46875 19.953125 12.929688 19.875 13.375 C 19.628906 13.320313 19.265625 13.253906 18.84375 13.25 C 18.53125 13.246094 18.140625 13.296875 17.8125 13.34375 C 17.925781 12.996094 18 12.613281 18 12.21875 C 18 11.257813 17.53125 10.363281 16.78125 9.625 C 16.988281 8.855469 17.191406 7.535156 16.65625 7 C 15.074219 7 14.199219 8.128906 14.15625 8.1875 C 13.667969 8.070313 13.164063 8 12.625 8 C 11.933594 8 11.273438 8.125 10.65625 8.3125 L 10.84375 8.15625 C 10.84375 8.15625 9.964844 6.9375 8.34375 6.9375 C 7.777344 7.507813 8.035156 8.953125 8.25 9.6875 C 7.484375 10.417969 7 11.28125 7 12.21875 C 7 12.546875 7.078125 12.859375 7.15625 13.15625 C 6.878906 13.125 5.878906 13.03125 5.46875 13.03125 C 5.105469 13.03125 4.542969 13.117188 4.09375 13.21875 C 4.03125 12.820313 4 12.414063 4 12 C 4 7.589844 7.589844 4 12 4 Z M 5.46875 13.28125 C 5.863281 13.28125 7.0625 13.421875 7.21875 13.4375 C 7.238281 13.492188 7.257813 13.542969 7.28125 13.59375 C 6.851563 13.554688 6.019531 13.496094 5.46875 13.5625 C 5.101563 13.605469 4.632813 13.738281 4.21875 13.84375 C 4.1875 13.71875 4.148438 13.597656 4.125 13.46875 C 4.5625 13.375 5.136719 13.28125 5.46875 13.28125 Z M 18.84375 13.5 C 19.242188 13.503906 19.605469 13.570313 19.84375 13.625 C 19.832031 13.691406 19.796875 13.746094 19.78125 13.8125 C 19.527344 13.753906 19.109375 13.667969 18.625 13.65625 C 18.390625 13.652344 18.015625 13.664063 17.6875 13.6875 C 17.703125 13.65625 17.707031 13.625 17.71875 13.59375 C 18.058594 13.546875 18.492188 13.496094 18.84375 13.5 Z M 6.09375 13.78125 C 6.65625 13.785156 7.183594 13.824219 7.40625 13.84375 C 7.929688 14.820313 8.988281 15.542969 10.625 15.84375 C 10.222656 16.066406 9.863281 16.378906 9.59375 16.75 C 9.359375 16.769531 9.113281 16.78125 8.875 16.78125 C 8.179688 16.78125 7.746094 16.160156 7.375 15.625 C 7 15.089844 6.539063 15.03125 6.28125 15 C 6.019531 14.96875 5.929688 15.117188 6.0625 15.21875 C 6.824219 15.804688 7.097656 16.5 7.40625 17.125 C 7.683594 17.6875 8.265625 18 8.90625 18 L 9.03125 18 C 9.011719 18.109375 9 18.210938 9 18.3125 L 9 19.40625 C 6.691406 18.472656 4.933594 16.5 4.28125 14.0625 C 4.691406 13.960938 5.152344 13.855469 5.5 13.8125 C 5.660156 13.792969 5.863281 13.777344 6.09375 13.78125 Z M 18.625 13.90625 C 19.074219 13.917969 19.472656 14.003906 19.71875 14.0625 C 19.167969 16.132813 17.808594 17.855469 16 18.90625 L 16 18.3125 C 16 17.460938 15.328125 16.367188 14.375 15.84375 C 15.957031 15.554688 16.988281 14.863281 17.53125 13.9375 C 17.910156 13.910156 18.355469 13.898438 18.625 13.90625 Z M 12.5 18 C 12.773438 18 13 18.226563 13 18.5 L 13 19.9375 C 12.671875 19.980469 12.339844 20 12 20 L 12 18.5 C 12 18.226563 12.226563 18 12.5 18 Z M 10.5 19 C 10.773438 19 11 19.226563 11 19.5 L 11 19.9375 C 10.664063 19.894531 10.324219 19.832031 10 19.75 L 10 19.5 C 10 19.226563 10.226563 19 10.5 19 Z M 14.5 19 C 14.742188 19 14.953125 19.175781 15 19.40625 C 14.675781 19.539063 14.34375 19.660156 14 19.75 L 14 19.5 C 14 19.226563 14.226563 19 14.5 19 Z">
+                                            </path>
+                                        </svg></i></a>
+                            </div>
+                            <form action="https://formsubmit.co/irshadrisad@gmail.com" method="POST" class="email-form" target="_blank" >
+                                <input id="name" name="name" type="text" placeholder="Name" required autocomplete="off">
+                                <input id="email" name="email" type="email" placeholder="Email" required>
+                                <textarea id="comment" name="message" placeholder="Feel free to share your suggestions, comments, advice, or complaints. We value your input and will get back to you personally..." required></textarea>
+                                <button class="contact" id="sendMailBtn">send</button>
+                            </form>
+                            <div class="confirmation" id="confirmation">
+                                <div class="checkmark">✔️</div>
+                                <h2>Message Sent!</h2>
+                                <p>Thank you for reaching out to us. We will get back to you as soon as possible. Your feedback is valuable and helps us improve!<br><span style="font-style: italic; font-size: 0.8rem; color: rgb(29, 18, 5);">-- Irshad</span></p>
+                            </div>
+                        </div>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const contactButtons = document.getElementById('main-button');
+                                const confirmation = document.getElementById('confirmation');
+
+                                contactButtons.addEventListener('click', function (e) {
+                                    e.preventDefault(); // to prevent form submission if needed
+
+                                    document.querySelector('.card').classList.toggle('active');
+                                    document.querySelector('.banner').classList.toggle('active');
+                                    document.querySelector('.photo').classList.toggle('active');
+                                    document.querySelector('ul').classList.toggle('active');
+                                    document.querySelector('.social-media-banner').classList.toggle('active');
+                                    document.querySelector('.email-form').classList.toggle('active');
+                                    
+                                    confirmation.style.display = 'none';
+                                    if (contactButtons.textContent.trim() === "《 Back") {
+                                        contactButtons.textContent = "click to get in touch 》";
+                                    } else {
+                                        contactButtons.textContent = "《 Back";
+                                    }
+                                });
+
+                                const photo = document.querySelector('.photo');
+
+                                // Add 3D tilt effect on mousemove
+                                photo.addEventListener('mousemove', function (event) {
+                                    const rect = photo.getBoundingClientRect();
+                                    const x = event.clientX - rect.left; // X position within the element
+                                    const y = event.clientY - rect.top; // Y position within the element
+
+                                    const centerX = rect.width / 2;
+                                    const centerY = rect.height / 2;
+
+                                    const rotateX = ((y - centerY) / centerY) * 15; // Adjust tilt intensity
+                                    const rotateY = ((x - centerX) / centerX) * -15; // Adjust tilt intensity
+                                    photo.style.boxShadow = `${rotateY * 2}px ${rotateX * 2}px 5px rgba(0, 0, 0, 0.1)`;
+                                    photo.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                                });
+
+                                // Reset tilt effect on mouseleave
+                                photo.addEventListener('mouseleave', function () {
+                                    photo.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                                
+                            });
+                            });
+
+
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const sendBtn = document.getElementById('sendMailBtn');
+                                const emailForm = document.querySelector('.email-form');
+                                const confirmation = document.getElementById('confirmation');
+
+                                // When user clicks the "Send" button
+                                sendBtn.addEventListener('click', function (e) {
+                                    e.preventDefault();  // Prevent form submission to show confirmation first
+
+                                    // Hide the form and show the confirmation message
+                                    emailForm.style.display = 'none';
+                                    confirmation.style.display = 'block';
+                                    
+
+                                    // Optionally, add a delay before actual form submission to ensure animation completes
+                                    setTimeout(function () {
+                                        emailForm.submit();  // Now actually submit the form
+                                    }, 2000); // Wait for 1.5 seconds before submitting the form
+                                });
+                            });
+
+
+                        </script>
+
+                    </div>
+
+                </div>
+                <footer>
+                    <p>Made with ❤️ by <i>Irshad</i></p>
+                </footer>
+        </section>
+
+
+        </main>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="vanilla-tilt.js"></script>
+</body>
+
+</html>

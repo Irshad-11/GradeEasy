@@ -1,0 +1,388 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GradeEasy Developer Blueprint</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#📘-gradeeasy-–-cgpa-calculator-web-application-documentation">📘 GradeEasy – CGPA Calculator Web Application Developer Blueprint</a>
+<ul>
+<li><a href="#🚀-1.-introduction">🚀 1. Introduction</a></li>
+<li><a href="#🎯-2.-project-overview">🎯 2. Project Overview</a></li>
+<li><a href="#⚙️-3.-settings-panel-–-customization-options">⚙️ 3. Settings Panel – Customization Options</a></li>
+<li><a href="#🎨-4.-user-interface-ui-breakdown">🎨 4. User Interface (UI) Breakdown</a></li>
+<li><a href="#📂-5.-data-storage--retrieval">📂 5. Data Storage & Retrieval</a></li>
+<li><a href="#📝-6.-cgpa-calculation-formula">📝 6. CGPA Calculation Formula</a></li>
+<li><a href="#🛠️-7.-technologies-used">🛠️ 7. Technologies Used</a></li>
+</ul>
+</li>
+<li><a href="#📄-gradeeasy-–-project-detailed--insightful-🚀">📄 GradeEasy – Project (Detailed & Insightful) 🚀</a>
+<ul>
+<li><a href="#📌-project-overview">📌 Project Overview</a></li>
+<li><a href="#🖥️-ui--ux-breakdown">🖥️ UI & UX Breakdown</a></li>
+<li><a href="#🔍-tabs--their-functions">🔍 Tabs & Their Functions</a></li>
+<li><a href="#💾-data-storage--persistence">💾 Data Storage & Persistence</a></li>
+<li><a href="#🚀-future-enhancements--possible-additions">🚀 Future Enhancements & Possible Additions</a></li>
+<li><a href="#📌-summary--final-thoughts">📌 Summary & Final Thoughts</a></li>
+<li><a href="#🌱-8.-future-enhancements">🌱 8. Future Enhancements</a></li>
+</ul>
+</li>
+<li><a href="#🚀-gradeeasy-development-timeline--⏳">🚀 GradeEasy Development Timeline  ⏳</a>
+<ul>
+<li><a href="#📅-week-1-–-core-structure--basic-functionality">📅 Week 1 – Core Structure & Basic Functionality</a></li>
+<li><a href="#📅-week-2-–-ui-refinements--advanced-features">📅 Week 2 – UI Refinements & Advanced Features</a></li>
+<li><a href="#💡-bonus-optional-–-extra-features-🚀">💡 Bonus (Optional) – Extra Features 🚀</a></li>
+<li><a href="#💡-9.-conclusion">💡 9. Conclusion</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="📘-gradeeasy-–-cgpa-calculator-web-application-documentation"><strong>📘 GradeEasy – CGPA Calculator Web Application Documentation</strong></h1>
+<blockquote>
+<p><strong>"A simple, powerful, and customizable CGPA calculator for students!"</strong></p>
+</blockquote>
+<h2 id="🚀-1.-introduction"><strong>🚀 1. Introduction</strong></h2>
+<h3 id="what-is-gradeeasy"><strong>What is GradeEasy?</strong></h3>
+<p><strong>GradeEasy</strong> is a <strong>user-friendly</strong> and <strong>customizable</strong> CGPA calculator designed for university students. It helps students track their academic performance efficiently by calculating CGPA based on <strong>three grading components</strong>:</p>
+<p>✅ <strong>Continuous Assessment Marks</strong><br>
+✅ <strong>Mid-Term Exam Marks</strong><br>
+✅ <strong>Semester Exam Marks</strong></p>
+<p>Since grading systems vary across universities, <strong>GradeEasy includes a settings panel</strong> where students can modify grading rules according to their institution’s system.</p>
+<p>🔹 <strong>No frameworks or libraries required!</strong> This app is built using <strong>pure HTML, CSS, and JavaScript</strong> (Optional: Tailwind CSS).<br>
+🔹 <strong>Data is saved in LocalStorage</strong>, so students can access past CGPA records without signing in!</p>
+<h2 id="🎯-2.-project-overview"><strong>🎯 2. Project Overview</strong></h2>
+<h3 id="📌-core-features"><strong>📌 Core Features</strong></h3>
+<p>💡 <strong>Calculate CGPA</strong> based on <strong>three marking components</strong> and course credit hours.<br>
+💡 <strong>Save CGPA records</strong> to LocalStorage for quick access.<br>
+💡 <strong>Organize CGPA calculations</strong> by <strong>academic terms</strong> (e.g., <em>1st Year, 1st Semester</em>).<br>
+💡 <strong>Customizable settings</strong> for different grading systems (modify grading scale, credit weightage, etc.).<br>
+💡 <strong>User-friendly UI</strong> for smooth navigation and interactions.</p>
+<h3 id="🛠️-user-interaction-flow"><strong>🛠️ User Interaction Flow</strong></h3>
+<p>1️⃣ <strong>Landing Page</strong></p>
+<ul>
+<li>A welcoming interface with an <strong>“Add New CGPA”</strong> button and a list of saved records.</li>
+<li>Students can <strong>view past CGPA calculations</strong> for different semesters.</li>
+</ul>
+<p>2️⃣ <strong>CGPA Calculation Page</strong></p>
+<ul>
+<li>Input fields for <strong>Continuous, Mid-term, and Semester Exam marks</strong>.</li>
+<li>Dropdown for <strong>selecting academic term (e.g., 1st Year, 1st Semester)</strong>.</li>
+<li>“Calculate CGPA” button to display results instantly.</li>
+</ul>
+<p>3️⃣ <strong>Settings Panel</strong> <em>(For customization) 🛠️</em></p>
+<ul>
+<li>Students can modify grading settings to match their university’s system.</li>
+<li>All changes are automatically saved and applied.</li>
+</ul>
+<p>4️⃣ <strong>CGPA Results Display</strong></p>
+<ul>
+<li>Shows <strong>total CGPA</strong>, <strong>semester grades</strong>, and <strong>credit-wise breakdown</strong>.</li>
+<li>Users can save results, clear data, or modify settings.</li>
+</ul>
+<h2 id="⚙️-3.-settings-panel-–-customization-options"><strong>⚙️ 3. Settings Panel – Customization Options</strong></h2>
+<p>Since universities follow different grading methods, <strong>GradeEasy allows users to modify settings</strong> to suit their institution’s system.</p>
+<h3 id="🔧-available-customization-options"><strong>🔧 Available Customization Options</strong></h3>
+<p>✔️ <strong>Marks Distribution</strong></p>
+<ul>
+<li>Adjust weightage for <strong>Continuous Assessment, Mid-term, and Semester Exams</strong> (e.g., <em>40% - 30% - 30%</em>).</li>
+</ul>
+<p>✔️ <strong>Grading Scale</strong></p>
+<ul>
+<li>Select grading scale (e.g., <strong>4.0, 5.0, or custom scales</strong>).</li>
+<li>Set minimum passing marks.</li>
+</ul>
+<p>✔️ <strong>Credit-Hour Weightage</strong></p>
+<ul>
+<li>Define how <strong>credits affect the final CGPA calculation</strong>.</li>
+</ul>
+<p>✔️ <strong>Pass/Fail Criteria</strong></p>
+<ul>
+<li>Enable or disable <strong>automatic fail alerts</strong> if a student scores below a set threshold.</li>
+</ul>
+<p>✔️ <strong>Display Preferences</strong></p>
+<ul>
+<li>Option to show <strong>letter grades (A, B, C, etc.)</strong> alongside CGPA.</li>
+</ul>
+<p>✔️ <strong>Data Management</strong></p>
+<ul>
+<li><strong>Clear CGPA Records</strong> button to reset all saved calculations.</li>
+</ul>
+<h2 id="🎨-4.-user-interface-ui-breakdown"><strong>🎨 4. User Interface (UI) Breakdown</strong></h2>
+<h3 id="📌-main-sections--layout"><strong>📌 Main Sections &amp; Layout</strong></h3>
+<h4 id="️⃣-dashboard-home-page-🏠"><strong>1️⃣ Dashboard (Home Page) 🏠</strong></h4>
+<ul>
+<li>Shows <strong>saved CGPA records</strong> for different academic terms.</li>
+<li>Button: <strong>“Add New CGPA”</strong> to start a fresh calculation.</li>
+<li>Button: <strong>“Settings”</strong> for customization.</li>
+</ul>
+<h4 id="️⃣-cgpa-calculator-page-🧮"><strong>2️⃣ CGPA Calculator Page 🧮</strong></h4>
+<ul>
+<li>Input fields for <strong>Continuous, Mid-term, and Semester Exam marks</strong>.</li>
+<li>Dropdown to select <strong>academic term</strong>.</li>
+<li><strong>"Calculate CGPA"</strong> button to process the marks.</li>
+</ul>
+<h4 id="️⃣-cgpa-results-page-📊"><strong>3️⃣ CGPA Results Page 📊</strong></h4>
+<ul>
+<li>Displays <strong>total CGPA</strong>, <strong>letter grades</strong>, and <strong>credit weightage breakdown</strong>.</li>
+<li>Option to <strong>edit marks</strong>, <strong>save results</strong>, or <strong>delete past CGPA entries</strong>.</li>
+</ul>
+<h4 id="️⃣-settings-page-⚙️"><strong>4️⃣ Settings Page ⚙️</strong></h4>
+<ul>
+<li>Modify <strong>grading rules</strong> according to university requirements.</li>
+<li>Toggle options for <strong>grading scale, pass/fail settings, and display preferences</strong>.</li>
+</ul>
+<h2 id="📂-5.-data-storage--retrieval"><strong>📂 5. Data Storage &amp; Retrieval</strong></h2>
+<p>✔️ <strong>LocalStorage is used to store CGPA records</strong> – No internet connection required!<br>
+✔️ <strong>Data is saved under the selected academic term</strong>, making it easy for students to track performance semester-wise.<br>
+✔️ <strong>Users can delete or modify past records anytime</strong> from the dashboard.</p>
+<h2 id="📝-6.-cgpa-calculation-formula"><strong>📝 6. CGPA Calculation Formula</strong></h2>
+<p><strong>GradeEasy</strong> calculates CGPA using the following formula:</p>
+<p><span class="katex--display"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>C</mi><mi>G</mi><mi>P</mi><mi>A</mi><mo>=</mo><mfrac><mrow><mo>∑</mo><mo stretchy="false">(</mo><mi>C</mi><mi>o</mi><mi>u</mi><mi>r</mi><mi>s</mi><mi>e</mi> <mi>G</mi><mi>r</mi><mi>a</mi><mi>d</mi><mi>e</mi><mo>×</mo><mi>C</mi><mi>r</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>t</mi> <mi>H</mi><mi>o</mi><mi>u</mi><mi>r</mi><mo stretchy="false">)</mo></mrow><mrow><mo>∑</mo><mo stretchy="false">(</mo><mi>C</mi><mi>r</mi><mi>e</mi><mi>d</mi><mi>i</mi><mi>t</mi> <mi>H</mi><mi>o</mi><mi>u</mi><mi>r</mi><mo stretchy="false">)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">
+CGPA = \frac{\sum (Course \, Grade \times Credit \, Hour)}{\sum (Credit \, Hour)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height: 0.68333em; vertical-align: 0em;"></span><span class="mord mathnormal" style="margin-right: 0.13889em;">CGP</span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right: 0.277778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right: 0.277778em;"></span></span><span class="base"><span class="strut" style="height: 2.36301em; vertical-align: -0.93601em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height: 1.427em;"><span class="" style="top: -2.314em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mop op-symbol small-op" style="position: relative; top: -5e-06em;">∑</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="mord mathnormal">re</span><span class="mord mathnormal">d</span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathnormal">Ho</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right: 0.02778em;">r</span><span class="mclose">)</span></span></span><span class="" style="top: -3.23em;"><span class="pstrut" style="height: 3em;"></span><span class="frac-line" style="border-bottom-width: 0.04em;"></span></span><span class="" style="top: -3.677em;"><span class="pstrut" style="height: 3em;"></span><span class="mord"><span class="mop op-symbol small-op" style="position: relative; top: -5e-06em;">∑</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="mord mathnormal">o</span><span class="mord mathnormal">u</span><span class="mord mathnormal">rse</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathnormal">G</span><span class="mord mathnormal" style="margin-right: 0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal">d</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right: 0.222222em;"></span><span class="mord mathnormal" style="margin-right: 0.07153em;">C</span><span class="mord mathnormal">re</span><span class="mord mathnormal">d</span><span class="mord mathnormal">i</span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right: 0.166667em;"></span><span class="mord mathnormal">Ho</span><span class="mord mathnormal">u</span><span class="mord mathnormal" style="margin-right: 0.02778em;">r</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height: 0.93601em;"><span class=""></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span></p>
+<h3 id="🖩-how-it-works"><strong>🖩 How It Works?</strong></h3>
+<p>1️⃣ Convert <strong>total marks</strong> into <strong>grades</strong> using the grading scale.<br>
+2️⃣ Multiply each course’s <strong>grade points</strong> by its <strong>credit hour</strong>.<br>
+3️⃣ Sum all <strong>grade points × credit hours</strong>.<br>
+4️⃣ Divide the total by <strong>sum of all credit hours</strong> to get the <strong>final CGPA</strong>.</p>
+<h2 id="🛠️-7.-technologies-used"><strong>🛠️ 7. Technologies Used</strong></h2>
+<ul>
+<li><strong>Frontend:</strong> HTML, CSS, JavaScript (Optional: Tailwind CSS for styling)</li>
+<li><strong>Storage:</strong> LocalStorage (for saving CGPA records)</li>
+</ul>
+<h1 id="📄-gradeeasy-–-project-detailed--insightful-🚀"><strong>📄 GradeEasy – Project (Detailed &amp; Insightful) 🚀</strong></h1>
+<h2 id="📌-project-overview"><strong>📌 Project Overview</strong></h2>
+<p><strong>GradeEasy</strong> is an intuitive <strong>CGPA calculator, tracker, and management system</strong> designed for university students 📚. The website provides a <strong>tab-based navigation system</strong> with a modern <strong>circular UI design</strong> and <strong>JS-powered transitions</strong> to ensure a smooth and interactive experience.</p>
+<h3 id="🎯-purpose--goals"><strong>🎯 Purpose &amp; Goals</strong></h3>
+<p>✅ <strong>Simplify CGPA calculation</strong> – No need for manual calculations, GradeEasy automates the process.<br>
+✅ <strong>Allow customization</strong> – Supports different grading systems via a <strong>Settings panel</strong>.<br>
+✅ <strong>Track progress over time</strong> – Saves and visualizes semester-wise CGPA trends.<br>
+✅ <strong>Provide insightful reports</strong> – Generates <strong>detailed PDFs</strong> with marks, CGPA, and graphical representations.<br>
+✅ <strong>Offer an elegant UI/UX experience</strong> – <strong>Circular progress bars, dot distribution charts, and line graphs</strong> enhance usability.</p>
+<h3 id="🚀-key-features--enhancements"><strong>🚀 Key Features &amp; Enhancements</strong></h3>
+<p>📌 <strong>Modern Tab-Based UI</strong> – Rounded circular tabs with smooth transitions.<br>
+📌 <strong>Customizable Grading System</strong> – Students can set their university’s grading method.<br>
+📌 <strong>Local Storage Support</strong> – CGPA records and settings are saved on the browser.<br>
+📌 <strong>PDF Export Feature</strong> – Generates reports with <strong>CGPA summary, grading tables, and graphical representation</strong>.<br>
+📌 <strong>Tosted Notification System</strong> – Warnings, errors, and tips appear in sleek toast pop-ups instead of alerts.<br>
+📌 <strong>Interactive CGPA Graphs</strong> – Tracks <strong>overall progress and semester-wise performance</strong>.</p>
+<h2 id="🖥️-ui--ux-breakdown"><strong>🖥️ UI &amp; UX Breakdown</strong></h2>
+<h3 id="📍-tab-navigation-system"><strong>📍 Tab Navigation System</strong></h3>
+<p>The <strong>navigation system</strong> consists of <strong>four floating circular tabs</strong> positioned on the <strong>right side</strong> of the screen for quick access:</p>
+<p>1️⃣ <strong>Introduction Tab</strong> 🏠 – Explains the app’s purpose, how it works, and provides quick-start guidance.<br>
+2️⃣ <strong>CG Calculate Tab</strong> 📊 – Core feature where users <strong>input marks and calculate CGPA</strong> dynamically.<br>
+3️⃣ <strong>Track CGPA Tab</strong> 📈 – Stores <strong>semester-wise CGPA</strong> and provides visual insights through graphs.<br>
+4️⃣ <strong>Settings Tab</strong> ⚙️ – Allows full <strong>customization of grading presets, themes, and other options</strong>.</p>
+<p>Each tab features <strong>smooth JS-powered transitions</strong> and <strong>state synchronization</strong>, ensuring that UI elements remain visually consistent as users navigate.</p>
+<h2 id="🔍-tabs--their-functions"><strong>🔍 Tabs &amp; Their Functions</strong></h2>
+<h3 id="️⃣-introduction-tab-🏠"><strong>1️⃣ Introduction Tab</strong> 🏠</h3>
+<p>📌 <strong>Purpose:</strong> Provides a <strong>quick start guide</strong> and explains the app’s functionality.</p>
+<p>📌 <strong>Content:</strong></p>
+<ul>
+<li>
+<p>🎓 <strong>Why GradeEasy?</strong> – An introduction to why the tool was created and its benefits.</p>
+</li>
+<li>
+<p>🔢 <strong>How CGPA is calculated?</strong> – Explanation of the <strong>formula and calculation process</strong>.</p>
+</li>
+<li>
+<p>👤 <strong>Who developed this?</strong> – A <strong>developer acknowledgment</strong> section.</p>
+</li>
+<li>
+<p>🏆 <strong>Quick Start:</strong></p>
+<ul>
+<li>
+<p>“Want to calculate your CGPA?” ➡ <strong>Button</strong> directs users to the <strong>CG Calculate tab</strong>.</p>
+</li>
+<li>
+<p>Navigation <strong>syncs automatically</strong> to ensure a seamless experience.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="️⃣-cg-calculate-tab-📊"><strong>2️⃣ CG Calculate Tab</strong> 📊</h3>
+<p>📌 <strong>Purpose:</strong> Allows students to <strong>input their marks and calculate their CGPA</strong> dynamically.</p>
+<p>📌 <strong>UI Components:</strong><br>
+✅ <strong>Session Name Input</strong> – Example: <code>1.1</code> (1st Year, 1st Semester)<br>
+✅ <strong>Preset Notification</strong> – Displays which <strong>grading system is currently active</strong> (default: <strong>BDU</strong>).<br>
+✅ <strong>First-Time User Message</strong> – Suggests checking the <strong>Settings tab</strong> for non-BDU students.</p>
+<p>📌 <strong>Mark Entry System:</strong><br>
+✅ <strong>Course Name</strong><br>
+✅ <strong>Checkbox (Choose GPA or Numerical Input)</strong><br>
+✅ <strong>Input for Mid Exam Marks</strong><br>
+✅ <strong>Input for Semester Final Marks</strong><br>
+✅ <strong>Button to Add More Rows</strong> (Default: <strong>5 rows</strong>)<br>
+✅ <strong>Delete Row Button</strong></p>
+<p>📌 <strong>Calculation &amp; Output:</strong><br>
+✅ <strong>Calculate Button</strong> – Triggers an <strong>animated result display</strong>.<br>
+✅ <strong>Circular CGPA Progress Bar</strong> – Fills <strong>dynamically based on CGPA</strong>.<br>
+✅ <strong>Result Distribution Table</strong> – Identifies where the CGPA falls (e.g., <code>3.2</code> falls between <code>3.0</code> and <code>3.25</code>).<br>
+✅ <strong>Dot Graph Representation</strong> – Visualizes subject-wise CGPA using <strong>color-coded dots</strong>.<br>
+✅ <strong>PDF Generation Option</strong> – Exports a <strong>detailed semester report</strong> containing:</p>
+<ul>
+<li>
+<p>📖 <strong>All Subject Marks &amp; GPA</strong></p>
+</li>
+<li>
+<p>🎯 <strong>Final Expected CGPA</strong></p>
+</li>
+<li>
+<p>🏆 <strong>Grade Table with Performance Analysis</strong></p>
+</li>
+</ul>
+<h3 id="️⃣-track-cgpa-tab-📈"><strong>3️⃣ Track CGPA Tab</strong> 📈</h3>
+<p>📌 <strong>Purpose:</strong> Allows students to <strong>track semester-wise CGPA progress</strong> and view trends.</p>
+<p>📌 <strong>Functionality:</strong><br>
+✅ <strong>Saved Semester List</strong> – Displays all <strong>saved CGPA records</strong>.<br>
+✅ <strong>Line Graph Representation</strong> – Visualizes <strong>CGPA progression</strong> over semesters.<br>
+✅ <strong>Result Summary:</strong></p>
+<ul>
+<li>
+<p>📍 <strong>Brief Overview</strong> – Semester-wise CGPA summary.</p>
+</li>
+<li>
+<p>📂 <strong>Detailed View</strong> – Shows full report using the <strong>same UI elements as PDF export</strong>.</p>
+</li>
+</ul>
+<p>📌 <strong>View Modes:</strong><br>
+🔹 <strong>Overall CGPA Trend</strong> – Displays <strong>all semesters in a line graph</strong>.<br>
+🔹 <strong>Specific Semester View</strong> – Allows users to <strong>select a semester</strong> to view <strong>detailed results</strong>.</p>
+<h3 id="️⃣-settings-tab-⚙️"><strong>4️⃣ Settings Tab</strong> ⚙️</h3>
+<p>📌 <strong>Purpose:</strong> The <strong>control panel</strong> for <strong>customizing the grading system and UI settings</strong>.</p>
+<p>📌 <strong>Customization Options:</strong><br>
+✅ <strong>🔄 Change Theme</strong> – Light/Dark mode toggle 🌞🌙<br>
+✅ <strong>🎯 Create Custom Preset</strong> – Name a new grading system<br>
+✅ <strong>📌 Define Mark Distribution:</strong></p>
+<ul>
+<li>
+<p>Continuous Assessment (Enable/Disable &amp; Set Weightage)</p>
+</li>
+<li>
+<p>Mid Exam (Enable/Disable &amp; Set Weightage)</p>
+</li>
+<li>
+<p>Semester Final Exam (Set Weightage)</p>
+</li>
+</ul>
+<p>📌 <strong>Action Buttons:</strong><br>
+✅ <strong>Apply Changes</strong> – Saves modifications.<br>
+✅ <strong>Clear Settings</strong> – Resets all custom options.<br>
+✅ <strong>Reset to Default</strong> – Restores the default BDU grading system.</p>
+<p>📌 <strong>📌 About Us Section:</strong><br>
+🔹 <strong>Developer Info &amp; Links</strong><br>
+🔹 <strong>Contact &amp; Feedback Options</strong></p>
+<h2 id="💾-data-storage--persistence"><strong>💾 Data Storage &amp; Persistence</strong></h2>
+<p>✅ <strong>Local Storage-Based System</strong> – Saves <strong>all CGPA records &amp; settings locally</strong>.<br>
+✅ <strong>Auto-Save Feature</strong> – Automatically updates CGPA records.<br>
+✅ <strong>Load &amp; Retrieve Data</strong> – Allows users to restore previous sessions.</p>
+<h2 id="🚀-future-enhancements--possible-additions"><strong>🚀 Future Enhancements &amp; Possible Additions</strong></h2>
+<p>💡 <strong>Here are some ideas that could be implemented later for an even better experience:</strong></p>
+<p>✅ <strong>User Authentication System</strong> – Allows students to save their data online.<br>
+✅ <strong>Multi-University Presets</strong> – Load grading systems for different universities automatically.<br>
+✅ <strong>AI-Based Grade Prediction</strong> – Predicts <strong>future CGPA</strong> based on trends and subject difficulty.<br>
+✅ <strong>Cloud Storage Integration</strong> – Save <strong>CGPA records online</strong> for better accessibility.<br>
+✅ <strong>Gamification Elements</strong> – Rewards and achievements for <strong>progress tracking</strong>.<br>
+✅ <strong>Mobile App Version</strong> – Develop a <strong>PWA (Progressive Web App)</strong> for mobile-friendly usage.<br>
+✅ <strong>Collaboration Mode</strong> – Allows students to <strong>compare CGPA</strong> with friends or mentors.</p>
+<h2 id="📌-summary--final-thoughts"><strong>📌 Summary &amp; Final Thoughts</strong></h2>
+<p>🚀 <strong>GradeEasy</strong> is a <strong>powerful, student-friendly CGPA calculator and tracker</strong> that brings automation, customization, and visualization to academic performance tracking.<br>
+🎯 It simplifies <strong>grade calculations, tracking, and customization</strong> with an interactive and engaging UI.<br>
+📈 The <strong>advanced result visualization tools</strong> (dot charts, line graphs, PDF exports) make it <strong>indispensable for students</strong>.<br>
+💡 With <strong>full local storage support</strong>, students can maintain their academic records effortlessly.</p>
+<p>🔥 <strong>This is just the beginning—GradeEasy will keep evolving!</strong> 💻🚀</p>
+<h2 id="🌱-8.-future-enhancements"><strong>🌱 8. Future Enhancements</strong></h2>
+<p>🎯 <strong>Export results as PDF/Excel</strong> for easy sharing.<br>
+🎯 <strong>Dark Mode</strong> for better accessibility.<br>
+🎯 <strong>Multi-User Profiles</strong> (so different students can track their CGPA separately).<br>
+🎯 <strong>Cloud Backup</strong> for saving CGPA across devices.</p>
+<h1 id="🚀-gradeeasy-development-timeline--⏳"><strong>🚀 GradeEasy Development Timeline  ⏳</strong></h1>
+<blockquote>
+<p><strong>Daily Goals – 2 to 3 hours per day</strong></p>
+</blockquote>
+<h2 id="📅-week-1-–-core-structure--basic-functionality"><strong>📅 Week 1 – Core Structure &amp; Basic Functionality</strong></h2>
+<h3 id="🗓-day-1-project-setup--basic-ui-design"><strong>🗓 Day 1: Project Setup &amp; Basic UI Design</strong></h3>
+<p>✅ Create project folder &amp; file structure (<em>index.html, style.css, script.js</em>).<br>
+✅ Design <strong>basic HTML structure</strong> (Home page, CGPA form, settings page).<br>
+✅ Add a simple <strong>navigation bar</strong> for switching between pages.</p>
+<hr>
+<h3 id="🗓-day-2-styling--layout-design-html--css"><strong>🗓 Day 2: Styling &amp; Layout Design (HTML + CSS)</strong></h3>
+<p>✅ Style <strong>dashboard &amp; CGPA input form</strong> using CSS (optional: Tailwind CSS).<br>
+✅ Design <strong>results section</strong> where CGPA will be displayed.<br>
+✅ Ensure mobile responsiveness.</p>
+<hr>
+<h3 id="🗓-day-3-input-handling--form-validation-js"><strong>🗓 Day 3: Input Handling &amp; Form Validation (JS)</strong></h3>
+<p>✅ Capture <strong>marks input</strong> from the form (Continuous, Mid-term, Semester).<br>
+✅ Validate inputs (<em>ensure numbers, prevent empty fields, restrict range</em>).<br>
+✅ Store user data in <strong>JavaScript objects</strong>.</p>
+<hr>
+<h3 id="🗓-day-4-cgpa-calculation-logic-js"><strong>🗓 Day 4: CGPA Calculation Logic (JS)</strong></h3>
+<p>✅ Implement <strong>grading scale conversion</strong> (marks → grade points).<br>
+✅ Apply <strong>CGPA calculation formula</strong>.<br>
+✅ Display <strong>calculated CGPA with letter grades</strong>.</p>
+<hr>
+<h3 id="🗓-day-5-localstorage-integration-save-cgpa-records"><strong>🗓 Day 5: LocalStorage Integration (Save CGPA Records)</strong></h3>
+<p>✅ Store CGPA results in <strong>LocalStorage</strong> (save per semester).<br>
+✅ Load previous CGPA records from LocalStorage on page load.<br>
+✅ Display <strong>saved records on dashboard</strong>.</p>
+<hr>
+<h3 id="🗓-day-6-settings-panel-implementation"><strong>🗓 Day 6: Settings Panel Implementation</strong></h3>
+<p>✅ Create a <strong>settings panel UI</strong>.<br>
+✅ Add <strong>input fields for custom grading rules</strong> (weightage, grade scale, credit hours).<br>
+✅ Save user settings in <strong>LocalStorage</strong>.</p>
+<hr>
+<h3 id="🗓-day-7-settings-functionality--data-persistence"><strong>🗓 Day 7: Settings Functionality &amp; Data Persistence</strong></h3>
+<p>✅ Apply <strong>user-defined settings</strong> to CGPA calculations.<br>
+✅ Ensure settings <strong>persist</strong> across page reloads.<br>
+✅ Debug and test functionality.</p>
+<h2 id="📅-week-2-–-ui-refinements--advanced-features"><strong>📅 Week 2 – UI Refinements &amp; Advanced Features</strong></h2>
+<h3 id="🗓-day-8-enhancing-uiux-🎨"><strong>🗓 Day 8: Enhancing UI/UX 🎨</strong></h3>
+<p>✅ Add animations &amp; transitions for better UI experience.<br>
+✅ Improve form styling &amp; error messages.<br>
+✅ Add hover effects &amp; button interactions.</p>
+<hr>
+<h3 id="🗓-day-9-results-display--data-editing"><strong>🗓 Day 9: Results Display &amp; Data Editing</strong></h3>
+<p>✅ Show <strong>detailed CGPA breakdown</strong> (course-wise, credit-wise).<br>
+✅ Implement <strong>edit/delete functionality</strong> for stored CGPA records.</p>
+<hr>
+<h3 id="🗓-day-10-error-handling--debugging-🛠️"><strong>🗓 Day 10: Error Handling &amp; Debugging 🛠️</strong></h3>
+<p>✅ Identify and fix <strong>bugs, broken UI elements, and logic errors</strong>.<br>
+✅ Ensure calculations are <strong>accurate</strong>.<br>
+✅ <strong>Cross-check with real university grading criteria.</strong></p>
+<hr>
+<h3 id="🗓-day-11-final-review--testing-🔍"><strong>🗓 Day 11: Final Review &amp; Testing 🔍</strong></h3>
+<p>✅ Test on <strong>multiple browsers &amp; devices</strong>.<br>
+✅ Get feedback from friends or testers.<br>
+✅ Fix any remaining UI or logic issues.</p>
+<hr>
+<h3 id="🗓-day-12-deployment--final-touches-🚀"><strong>🗓 Day 12: Deployment &amp; Final Touches 🚀</strong></h3>
+<p>✅ Optimize <strong>code for performance</strong> (remove unused styles, minify JS).<br>
+✅ Add a <strong>favicon &amp; meta tags</strong> for better presentation.<br>
+✅ Deploy to <strong>GitHub Pages or Netlify</strong> for sharing.<br>
+✅ Write a <strong>README file</strong> for the project.</p>
+<h2 id="💡-bonus-optional-–-extra-features-🚀"><strong>💡 Bonus (Optional) – Extra Features 🚀</strong></h2>
+<p>🎯 <strong>Day 13-14 (If time permits):</strong><br>
+✅ Export CGPA <strong>results as PDF/Excel</strong>.<br>
+✅ Implement <strong>dark mode</strong> toggle.<br>
+✅ Add <strong>multi-user profiles</strong> (so different students can track separately).</p>
+<h2 id="💡-9.-conclusion"><strong>💡 9. Conclusion</strong></h2>
+<p><strong>GradeEasy</strong> is designed to be <strong>a simple yet powerful CGPA calculator</strong>, allowing students to keep track of their academic performance <strong>without hassle</strong>. With <strong>customizable grading rules, semester-wise data storage, and an intuitive UI</strong>, it ensures a seamless experience for students from any university.</p>
+<p>🎯 <strong>No frameworks, no sign-ups—just pure JavaScript magic! ✨</strong></p>
+<p>👨‍🎓📚 Ready to build your own CGPA tracking system? Let’s get started with coding! 🚀</p>
+
+    </div>
+  </div>
+</body>
+
+</html>
