@@ -34,6 +34,41 @@ document.querySelectorAll(".tab").forEach(tab => {
 
 });
 
+
+window.addEventListener("DOMContentLoaded", () => {
+    const hash = window.location.hash.substring(1); // e.g., 'swe-outline'
+    const defaultTab = "intro"; // fallback tab if hash not found
+
+    if (hash) {
+        const targetTab = document.querySelector(`.tab[data-tab="${hash}"]`);
+        const targetContent = document.getElementById(hash);
+
+        if (targetTab && targetContent) {
+            // Remove existing active classes
+            document.querySelector(".tab.active")?.classList.remove("active");
+            document.querySelector(".tab-content.active")?.classList.remove("active");
+
+            // Activate tab and content
+            targetTab.classList.add("active");
+            targetContent.classList.add("active");
+
+            // Save to localStorage (optional)
+            localStorage.setItem('activeTab', hash);
+
+            // Optional: loadSavedSemesters or trigger any init logic
+            if (hash === 'cg-calculate') {
+                showToast('Use arrow keys to navigate quickly (←, →, ↑, ↓) .', 'success');
+                firstTime = false;
+            }
+
+            loadSavedSemesters(); // your function
+        }
+    }
+});
+
+
+
+
 // Set default tab if no previous tab is recorded
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -3142,3 +3177,4 @@ function goToFAQ(faqId) {
         updatePresetList();
     });
 })();
+
