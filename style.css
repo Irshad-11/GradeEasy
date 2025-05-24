@@ -2748,9 +2748,14 @@ button.contact:focus {
         overflow: hidden;
         position: relative;
         animation: slideDown 0.5s ease-in-out;
+        text-align: justify;
 
         /* Position relative for the gradient overlay */
 
+    }
+
+    .introfuceSE * {
+        text-align: justify !important;
     }
 
     .introduceSE::after {
