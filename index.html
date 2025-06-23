@@ -197,6 +197,39 @@
                                             <label class="block text-white mb-1">Credit</label>
                                             <input id="creditInput" type="number" placeholder="e.g., 3">
                                         </div>
+                                        <div style="margin: 10px;">
+                                            <div
+                                                style="display: flex; align-items: center; border: 2px solid red; padding: 10px; animation: blink 4s infinite; max-width: 400px;">
+                                                <img src="https://www.shutterstock.com/shutterstock/photos/771194296/display_1500/stock-vector-yellow-warning-dangerous-attention-icon-icon-danger-symbol-filled-flat-sign-solid-pictogram-771194296.jpg"
+                                                    alt="Warning"
+                                                    style="width: 60px; height: 60px; margin-right: 10px; object-fit: cover; object-position: top;">
+                                                <p style="margin: 0; font-family: Arial, sans-serif; font-size: 14px;">
+                                                    Currently, this calculation is based on Marks Per Credit. That means
+                                                    your theory and lab marks per credit must be equal. A standardized
+                                                    CGPA
+                                                    calculation system will be introduced soon. This system currently
+                                                    works
+                                                    best when Marks Per Credit are the same.
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <style>
+                                            @keyframes blink {
+                                                0% {
+                                                    border-color: red;
+                                                }
+
+                                                50% {
+                                                    border-color: #93DEF180;
+                                                }
+
+                                                100% {
+                                                    border-color: red;
+                                                }
+                                            }
+                                        </style>
+
                                     </div>
                                     <div class="MPCdiv">
                                         Marks per Credit: <span id="marksPerCreditDisplay">N/A</span>
@@ -632,7 +665,7 @@
                                     if (emailForm.checkValidity()) {
                                         emailForm.style.display = 'none';
                                         confirmation.style.display = 'block';
-                                        
+
                                         setTimeout(function () {
                                             emailForm.submit(); // Submit the form if all fields are valid
 
