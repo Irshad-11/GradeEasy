@@ -2877,24 +2877,24 @@ function goToFAQ(faqId) {
 (function () {
     // Default preset
     const defaultPreset = {
-        id: 'default',
-        name: 'BDU (default)',
-        totalMarks: 100,
-        credit: 1,
-        marksPerCredit: 100,
-        gradingTable: [
-            { start: 80, end: 100, gpa: 4.00, grade: 'A+' },
-            { start: 75, end: 79, gpa: 3.75, grade: 'A' },
-            { start: 70, end: 74, gpa: 3.50, grade: 'A-' },
-            { start: 65, end: 69, gpa: 3.25, grade: 'B+' },
-            { start: 60, end: 64, gpa: 3.00, grade: 'B' },
-            { start: 55, end: 59, gpa: 2.75, grade: 'B-' },
-            { start: 50, end: 54, gpa: 2.50, grade: 'C+' },
-            { start: 45, end: 49, gpa: 2.25, grade: 'C' },
-            { start: 40, end: 44, gpa: 2.00, grade: 'D' },
-            { start: 0, end: 39, gpa: 0.00, grade: 'F' }
-        ]
-    };
+    id: 'default',
+    name: 'BDU (default)',
+    totalMarks: 100,
+    credit: 1,
+    marksPerCredit: 100,
+    gradingTable: [
+        { start: 80, end: 100, gpa: 4.00, grade: 'A+' },
+        { start: 75, end: 79.99, gpa: 3.75, grade: 'A' },
+        { start: 70, end: 74.99, gpa: 3.50, grade: 'A-' },
+        { start: 65, end: 69.99, gpa: 3.25, grade: 'B+' },
+        { start: 60, end: 64.99, gpa: 3.00, grade: 'B' },
+        { start: 55, end: 59.99, gpa: 2.75, grade: 'B-' },
+        { start: 50, end: 54.99, gpa: 2.50, grade: 'C+' },
+        { start: 45, end: 49.99, gpa: 2.25, grade: 'C' },
+        { start: 40, end: 44.99, gpa: 2.00, grade: 'D' },
+        { start: 0, end: 39.99, gpa: 0.00, grade: 'F' }
+    ]
+};
 
     // Initialize presets from localStorage
     let presets = JSON.parse(localStorage.getItem('cgpaPresets')) || [];
