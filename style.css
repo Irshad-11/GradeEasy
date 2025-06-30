@@ -146,13 +146,17 @@ body {
 
 }
 
-.aside .logo {}
+.aside .logo {
+    font-family: "Fugaz One", sans-serif;
+}
 
 
 
 .aside .logo p {
     font-size: clamp(2.5rem, 2.9rem, 2.7rem);
+    font-family: "Fugaz One", sans-serif;
     color: #f5e1c5;
+    line-height: 100%;
     margin-bottom: 20px;
     text-align: right;
 }
@@ -862,35 +866,16 @@ td {
 
 #department-name {
 
-    color: transparent;
+    color: #d3725a ;
     /* Make text transparent */
     position: relative;
     /* Position relative for the outline effect */
-    animation: gradient-animation 5s ease infinite;
+    /* animation: gradient-animation 5s ease infinite; */
 }
 
 
 
-#department-name::after {
-    content: attr(data-text);
-    /* Use the same text for the outline */
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(270deg, #ffe2d1, #c26851, #feb47b, #ffe2d1);
-    background-size: 1000%;
-    /* Increase size for animation */
-    -webkit-background-clip: text;
-    /* Clip background to text */
-    -webkit-text-fill-color: transparent;
-    /* Make text transparent */
-    animation: gradient-animation 15s ease infinite;
-    /* Animation */
-    z-index: -1;
-    /* Place behind the original text */
-}
+
 
 @keyframes gradient-animation {
     0% {
@@ -1735,7 +1720,7 @@ a {
     margin-top: -154px;
     width: 100%;
     height: 150px;
-    background-image: url("https://i.pinimg.com/1200x/3a/0d/6b/3a0d6b1a6d22ba180a12d9a13f2af07b.jpg");
+    background-image: url("https://i.pinimg.com/originals/17/c3/12/17c31212f024e4894ea0360ed1d19fa0.gif");
     background-size: cover;
     background-position: 50% 40%;
     border-bottom: solid 1px lightgrey;
@@ -1762,7 +1747,7 @@ a {
     width: 150px;
     background-color: white;
     margin: 0 auto;
-    background-image: url("Untitled1.jpeg");
+    background-image: url("https://i.pinimg.com/1200x/0d/b6/21/0db621d65f426f89f78908e37e86f75c.jpg");
     background-size: cover;
     background-position: 50% 50%;
     top: 75px;
