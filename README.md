@@ -32,8 +32,6 @@ Just input your course marks, and GradeEasy will handle the CGPA calculation and
 
 
 
-## 🖼️ Screenshots
-
 ## 🖼️ Screenshots & Feature Walkthrough
 
 | 📄 Feature Description | 🖼️ Screenshot |
