@@ -102,4 +102,4 @@ This project is licensed under the [MIT License](https://chatgpt.com/LICENSE).
 
 ## 🌐 Live Demo
 
-👉 [irshad-11.github.io/GradeEasy
+👉 [irshad-11.github.io/GradeEasy]
